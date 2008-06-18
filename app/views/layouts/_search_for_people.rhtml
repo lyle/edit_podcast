@@ -1,0 +1,11 @@
+
+Person Search <input type="text" id="person_search" name="person_search" /> <img id="person_search_status" src="/images/timer_bgFFFFFF.gif" style="display:none" />  
+	 <div id="person_search_results"></div>
+	 
+	  <%= observe_field 'person_search',
+    :frequency => 1,
+    :update => 'person_search_results',
+    :url => { :controller => 'account', :action=> 'person_search' },
+    :with => "'criteria=' + escape(value)",
+    :loading => "$('person_search_status').style.display='inline'",
+    :loaded => "$('person_search_status').style.display='none'" %>

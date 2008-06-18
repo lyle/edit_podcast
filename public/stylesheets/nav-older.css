@@ -1,0 +1,181 @@
+#divUser {
+ position: absolute;
+ right: 0px;
+ top:0px;
+}
+
+#currently h1, #currently h2 {
+  display:inline;
+  font-size: small;
+  font-weight: normal;
+  margin:0px;
+  padding: 0px;
+  padding-right: 1em;
+}
+#currently h1 {
+  font-weight: bold;
+
+}
+
+	#nav {
+		position: relative;
+		width: 400px;
+		font-family: arial, verdana, sans-serif;
+	    font-size: small;
+	    background-color: #fff;
+	}
+
+	#nav a {
+		text-decoration: none;
+		font-weight: bold;
+	    font-size: small;
+	}
+
+	#nav li { /*float the main list items*/
+		margin: 0;
+		float: left;
+		display: block;
+		padding-right: 15px;
+	}
+	
+	#nav .sectionLabel {
+		color: #EEEE99;
+	}
+
+    #nav li ul {
+		display: none;
+		margin: 0;
+		padding: 0;
+		position: absolute;
+		left: 0;
+		padding-top: 5px;
+		background-color: #666633;
+		height: 28px;
+		width: 100%;
+		padding-left: 60px;
+	}
+	
+	#nav li a {
+		color: #FFFFFF;
+	    background-color:#999966;
+		display: block;
+		width: 93px;
+		padding: 0;
+		text-align: center;
+	    font-size: small;
+	    
+		-moz-border-radius-topleft:10px;
+		-moz-border-radius-topright:10px;
+		border-top: 1px solid #333300;
+		border-left: 1px solid #333300;
+		border-right: 1px solid #333300;
+	}
+	#nav li a:hover { 
+		color: #f90;
+		background-color: #666633;
+	}
+	#nav li li a:hover {
+	    background-color:transparent;
+	}
+    #nav li ul li a {
+		display: block;
+    	background-color: transparent;
+		border: 0;
+		float: left; /*ie doesn't inherit the float*/
+		color: #fff;
+		width: auto;
+		height: auto;
+		margin-right: 15px;
+	    font-size: small;
+    }
+
+	
+
+    body.Admin #nav li#navAdmin a,
+    body.articles #nav li#navArticles a,
+    body.questions #nav li#navQandA a,
+    body.shows #nav li#navShows a{
+        background-color: #CCCC99;
+		
+    }
+    body.articles.index #navArticles a.list,
+    body.articles.list #navArticles a.list,
+    body.articles.new #navArticles a.new,
+	body.articles.edit #navArticles .edit {
+	   color: #f00;
+	}
+	body.shows.edit #divNav #nav li#navShows ul {
+	  display:none;
+	}
+	
+    body.shows.index #navShows a.list,
+    body.shows.list #navShows a.list,
+    body.shows.new #navShows a.new,
+	body.shows.edit #navShows .edit {
+	   color: #f00;
+	}
+	
+	body.questions.show #navQandA .show,
+	body.questions.edit #navQandA .edit  {
+	   color: #f00;
+	}
+    body.Admin #nav li#navAdmin ul,
+    body.articles #nav li#navArticles ul,
+    body.questions #nav li#navQandA ul,
+    body.shows #nav li#navShows ul  {
+    	background-color: #CCCC99;
+		display: block;
+    }
+    body.Admin #nav li#navAdmin ul .sectionLabel,
+    body.articles #nav li#navArticles ul .sectionLabel,
+    body.questions #nav li#navQuestions ul.sectionLabel,
+    body.shows #nav li#navShows ul .sectionLabel{
+    	color: black;
+    }
+    body.Admin #nav li#navAdmin a:hover {
+		color: #fff;
+    }
+
+	#nav li:hover ul, #nav li.over ul {
+		display: block;
+		z-index: 100;
+	}
+
+#nav .addFormWrapper {
+ 	background-color:#f4eada;
+ 	border: 1px solid #54504b;
+ 	position:absolute;
+ 	left: 2em;
+ 	top: 2em;
+ 	width: 500px;
+}
+#nav .addFormWrapper h2 {
+  display:block;
+  background-color: #d9d0c3;
+  color: #54504b;
+  font-weight: bold;
+  margin: 0px;
+  padding: 0px;
+}
+#nav .addFormWrapper a {
+		-moz-border-radius-topleft:0px;
+		-moz-border-radius-topright:0px;
+  background-color:transparent;
+}
+#nav .addFormWrapper .closebutton {
+  float:right;
+  border: 1px solid #333;
+  text-decoration: none;
+  font-weight: bold;
+  line-height: 1em;
+
+}
+
+#nav .addForm {
+ 	padding:30px;
+  
+}
+
+#currently {
+
+}

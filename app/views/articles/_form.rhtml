@@ -1,0 +1,37 @@
+<%= error_messages_for 'article' %>
+
+<!--[form:article]-->
+
+<div class="fieldPair">
+<div><label for="article_title">Title</label><br />
+<%= text_field 'article', 'title', "size" => 35  %><br />
+<label for="article_slug">URL: /article/</label><span id="article_slug"><%= @article.slug %></span>
+
+<%= in_place_editor("article_slug", :size => 20, :url => {:controller => 'articles', :action => 'set_article_slug', :id => @article}) %>
+
+
+</div>
+
+<div><label for="article_subtitle">Subtitle</label><br />
+<%= text_field 'article', 'subtitle', "size" => 35  %></div>
+</div>
+
+<div class="optional"><label for="article_publishdate"><%= link_to_function("Publishdate","toggleWithBlind('article_publishdate_wrapper');")%></label>
+<div id="article_publishdate_wrapper" class="wrapper" style="display: none;">
+You can set a future date if you do not want the article to be live until later.
+When the article is done and ready to publish, set this date for the 'go live date',
+set the article to 'live' and then click save.
+<%= datetime_select 'article', 'publishdate'  %></div></div>
+
+<div class="optional"><label for="article_category"><%= link_to_function("Category","toggleWithBlind('article_category_wrapper');")%></label>
+<div id="article_category_wrapper" class="wrapper" style="display: none;">
+<label for="article_category">Category</label><br/>
+<%= text_field 'article', 'category', "size" => 80 %></div></div>
+
+<p><label for="article_abstract">Abstract</label><br/>
+<%= text_area 'article', 'abstract', "rows" => 8, "cols" => 80   %></p>
+
+
+
+<!--[eoform:article]-->
+

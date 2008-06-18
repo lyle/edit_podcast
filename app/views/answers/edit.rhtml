@@ -1,0 +1,11 @@
+<h1>Answering <%=h @question.person_name %>'s Question</h1>
+<div class="question">
+  <%= textilize @question.content %>
+  </div>
+
+<%= start_form_tag :action => 'update', :id => @answer %>
+  <%= render_partial "form" %>
+  <%= submit_tag "Edit" %>
+<%= end_form_tag %>
+
+<%= link_to 'Cancel', :controller => 'questions', :action => 'show', :id => @question %>

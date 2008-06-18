@@ -1,0 +1,3 @@
+  page.remove "member_#{@user.id}"
+  page.visual_effect :highlight, "groupMembers", :duration => 3
+

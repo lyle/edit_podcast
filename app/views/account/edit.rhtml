@@ -1,0 +1,31 @@
+<%= start_form_tag :action=> "update", :id => @user.id %>
+
+
+<%= flash['notice'] %>
+
+
+<div class="formwithnote">
+  <%= error_messages_for 'user' %><br/>
+<div class="note">
+<h3>Hello Geeks</h3>
+<p>
+Please feel free to edit your account. 
+</p>
+<p>You can also <%= link_to "change your password", :action=>"change_password" %></p>
+</div>
+
+<div title="Edit Account" id="signupform" class="form">
+  <h3>Edit your "<%= h @user.login %>" Account</h3>
+  
+    <div class="bod">
+  
+  <label for="user_email">Your Email:</label><br/>
+  <%= text_field "user", "email", :size => 30 %> (never public)<br/>
+  <label for="user_display_name">Display Name:</label><br/>
+  <%= text_field "user", "display_name", :size => 30 %><br/>
+
+<input type="submit" value="Update &#187;" class="primary" />
+  </div>
+</div>
+</div>
+<%= end_form_tag %>

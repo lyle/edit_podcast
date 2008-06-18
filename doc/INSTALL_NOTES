@@ -1,0 +1,29 @@
+Installing edit.geekspeak.org
+
+You take this whole rails site and check it out from svn.
+
+You do a rake migrate
+You also have to make the necessary veiws to get images to work in shows and articles.
+This is so that we can use cocoon's DatabaseReader to get the images out using a one "table" select.
+
+Here are the special views:
+article_images
+  SELECT articles.title, articles.slug AS article_url, articles_images.image_id, articles_images.article_id, images.id, images.name, images.mimetype, images.height, images.width, images.data, images.user_id, images.created_on, images.updated_on
+  FROM articles, images, articles_images
+  WHERE articles.id = articles_images.article_id AND articles_images.image_id = images.id;
+  
+article_teaser
+  SELECT articles.title, articles.slug AS article_url, articles.teaser_id, images.id, images.name, images.mimetype, images.height, images.width, images.data, images.user_id, images.created_on, images.updated_on
+  FROM articles, images
+  WHERE articles.teaser_id = images.id;
+
+show_teaser
+  SELECT shows.title, shows.showtime, to_char(shows.showtime, 'YYYY/MM/DD'::text) AS show_url, shows.teaser_id, images.id, images.name, images.mimetype, images.height, images.width, images.data, images.user_id, images.created_on, images.updated_on
+  FROM shows, images
+  WHERE shows.teaser_id = images.id;
+  
+show_images
+  SELECT shows.title, shows.showtime, to_char(shows.showtime, 'YYYY/MM/DD'::text) AS show_url, images_shows.image_id, images_shows.show_id, images.id, images.name, images.mimetype, images.height, images.width, images.data, images.user_id, images.created_on, images.updated_on
+  FROM shows, images, images_shows
+  WHERE shows.id = images_shows.show_id AND images_shows.image_id = images.id;
+  

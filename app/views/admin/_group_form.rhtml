@@ -1,0 +1,16 @@
+<%= error_messages_for 'group' %>
+
+<!--[form:group]-->
+<p><label for="group_name">Name</label><br/>
+<%= text_field 'group', 'name'  %></p>
+
+<p><label for="group_description">Description</label><br/>
+<%= text_area 'group', 'description'  %></p>
+
+<p><label for="group_created_on">Created on</label><br/>
+<%= datetime_select 'group', 'created_on'  %></p>
+
+<p><label for="group_created_by">Created by</label><br/>
+<%= text_field 'group', 'created_by'  %></p>
+<!--[eoform:group]-->
+

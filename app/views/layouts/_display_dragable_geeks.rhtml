@@ -1,0 +1,9 @@
+
+	<ul>
+
+	<% @geeks.each do |geek| -%>
+	  <%= content_tag( 'li', geek.name, {:id=>"geek_#{geek.id}", :class=>"personName"})%>
+	  <%= draggable_element "geek_#{geek.id}", :revert => true, :ghosting => true %>
+	<%end -%>
+	
+	</ul>

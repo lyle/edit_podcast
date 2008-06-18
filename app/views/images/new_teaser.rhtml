@@ -1,0 +1,8 @@
+
+<form action="/images/create_teaser" method="post" enctype="multipart/form-data">
+
+  <input type="hidden" name="show_id" value="<%=@params['show_id']%>" />
+  
+  <%= render_partial('teaser_upload_form') %>
+  <%= submit_tag "Upload" %>
+</form>

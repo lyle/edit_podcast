@@ -1,0 +1,35 @@
+
+<%= start_form_tag :action=> "signup" %>
+
+<div class="formwithnote">
+  <%= error_messages_for 'user' %><br/>
+<div class="note">
+<h3>Hello Geeks</h3>
+<p>
+This site is for The Geeks of <a href="http://geekspeak.org/">GeekSpeak</a>. 
+</p>
+<p>Your login should be your first name: chris, dedi, drew, john, josh, lyle, maggi, miles, sean, rick, etc.</p>
+</div>
+
+<div title="Account signup" id="signupform" class="form">
+  <h3>Signup</h3>
+  
+    <div class="bod">
+  
+  <label for="user_login">Desired login:</label><br/>
+  <%= text_field "user", "login", :size => 30 %><br/>
+  <label for="user_email">Your Email:</label><br/>
+  <%= text_field "user", "email", :size => 30 %> (never public)<br/>
+  <label for="user_display_name">Display Name:</label><br/>
+  <%= text_field "user", "display_name", :size => 30 %><br/>
+  <label for="user_password">Choose password:</label><br/>
+  <%= password_field "user", "password", :size => 30 %><br/>
+  <label for="user_password_confirmation">Confirm password:</label><br/>
+  <%= password_field "user", "password_confirmation", :size => 30 %><br/>
+
+<input type="submit" value="Signup &#187;" class="primary" />
+  </div>
+</div>
+</div>
+<%= end_form_tag %>
+

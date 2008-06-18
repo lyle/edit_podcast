@@ -1,0 +1,11 @@
+if @headline && @headline.errors.empty?
+  #page.visual_effect :fade, "headline_#{@headline.headline_discussion.id}"
+  
+  page.replace_html "headline_#{@headline.id}_status", @headline.status
+  page.call('changeClass',"headlinediscussion_#{@headline.headline_discussion.id}",@headline.status)
+else
+  page.replace_html "feedback", (flash[:notice] + "<br />" + @headline.errors.full_messages().to_sentence)
+end 
+  
+#page.visual_effect :appear, "feedback", :duration => 0.2
+#page.visual_effect :fade, 'feedback',:delay => 5.0, :duration => 2.0

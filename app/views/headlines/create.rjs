@@ -1,0 +1,7 @@
+if @headline && @headline.errors.empty?
+  page.replace_html "feedback", flash[:notice]
+else
+  page.replace_html "feedback", (flash[:notice] + "<br />" + @headline.errors.full_messages().to_sentence)
+end  
+page.visual_effect :appear, "feedback", :duration => 0.2
+page.visual_effect :fade, 'feedback',:delay => 5.0, :duration => 2.0

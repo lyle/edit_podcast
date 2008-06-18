@@ -1,0 +1,46 @@
+<p>
+  <b>Person</b>
+  <%=h @question.person_name %>
+</p>
+<p>
+  <b>Email</b>
+  <%=h @question.person_email %>
+</p>
+<p>
+  <b>Location</b>
+  <%=h @question.location %>
+</p>
+<hr>
+<p>
+  <b>Title</b>
+  <%=h @question.title %>
+</p>
+<p>
+  <b>Content</b>
+  <%= textilize @question.content %>
+</p>
+
+<%= link_to 'Edit this Question', :action => 'edit', :id => @question %> |
+<%= link_to 'Back to List', :action => 'list' %>
+
+<% if @question.answers.length > 0 %>
+  <div id="answers">
+  <h2>Answers</h2>
+  <% for answer in @question.answers %>
+    <div class="answer">
+    <% profile = (answer.user.login).capitalize %>
+    <span class="profileImage"><%= image_tag "http://geekspeak.org/profiles/#{profile}/images/snapshot", :size => "100x145" %></span>
+    <span class="user"><%= link_to profile, "http://geekspeak.org/profiles/#{profile}/"%></span>
+    <span class="date"><%= answer.updated_on %></span>
+    <span class="todo"><%= link_to "edit", :controller => 'answers', :action => 'edit', :id => answer %></span>
+
+    <%= textilize answer.content%>
+  
+    </div>
+  <% end %>  
+</div>
+<% end %>
+
+
+<%= link_to 'Add an Answer', :controller => 'answers', :action => 'new', :question_id => @question %>
+

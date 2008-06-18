@@ -1,0 +1,33 @@
+<%= start_form_tag :action=> "login" %>
+
+
+<div class="formwithnote">
+<div class="note">
+<h3>Hello Geeks</h3>
+<p>
+If you are afiliated with <a href="http://geekspeak.org/">GeekSpeak</a> and do not have an account, please <%= link_to "signup", :action => "signup" %>.
+</p>
+<p>If you forget your password you will have to ask Miles or Lyle to reset it; these tools, as will become clear to you shortly, are far from done.</p>
+</div>
+<div title="Account login" id="loginform" class="form">
+    <h3>Please Login</h3>
+    <div class="bod">
+    <% if flash['notice'] %> 
+      <div id="message"><%= flash['notice'] %></div>
+    <% end %>
+
+    <label for="user_login">Login:</label><br/>
+    <input type="text" name="user_login" id="user_login" size="30" value=""/><br/>
+
+    <label for="user_password">Password:</label><br/>
+    <input type="password" name="user_password" id="user_password" size="30"/>
+
+    <br/>
+    <input type="submit" name="login" value="Login &#187;" class="primary" />
+    
+    <br clear="both" />
+    </div>
+</div>
+</div>
+<%= end_form_tag %>
+

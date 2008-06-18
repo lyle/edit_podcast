@@ -1,0 +1,4 @@
+if @group && @group.errors.empty?
+  page.insert_html :bottom, 'groups', displayGroup(@group)
+  page.visual_effect :highlight, 'groups', :duration => 3
+end 

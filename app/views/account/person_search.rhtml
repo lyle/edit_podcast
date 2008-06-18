@@ -1,0 +1,14 @@
+ <% if @people && @people.length > 0 %>
+  <ul>
+  <% for person in @people %>
+    <li id="user_<%=person.id%>" class="personName">
+      <%= @mark_term ? highlight("#{person.name}", @mark_term) : h(person.name)%>
+    </li>
+	<%= draggable_element "user_#{person.id}", :revert => true %>
+  <% end %>
+  </ul>
+<% elsif @mark_term && @mark_term.length > 0 %>
+  No Results
+<% else %>
+  &nbsp;
+<% end %>

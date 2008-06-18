@@ -1,0 +1,19 @@
+<%= flash['notice'] %>
+
+<div class="error_message"><% if @message %><%= @message %><% end %><br/>
+<h2>Account Information for <%=h @user.login%></h2>
+<ul id="user_account">
+ <li>login: <%=h @user.login%></li>
+ <li>display name: <%=h @user.display_name ? @user.display_name : "'tis blank"%></li>
+ <li>email: <%=h  @user.email ? "hidden (#{@user.email.length} chars long)" : "not on file"%></li>
+</ul>
+<% if @session[:user].id == @user.id %>
+<%= link_to "edit", :action=>"edit", :id => @user.id %>
+<% end %>
+
+<h2>Apeared on these GeekSpeak shows</h2>
+<ul>
+<% for show in @user.shows %>
+<%= content_tag("li",  "#{show.showtime.strftime("%Y-%m-%d")} #{show.title} " + show.link_to_show + " " + link_to ("edit", :controller=>"shows", :action=>"edit", :id=>show.id) ) %>
+<% end %>
+</ul>

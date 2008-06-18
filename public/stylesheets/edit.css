@@ -1,0 +1,663 @@
+body {
+  margin: 0px;
+  padding: 0px;
+ 
+}
+
+body {
+  background-color: #fff;
+  color: #333;
+}
+
+body, p, ol, ul, td {
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size:   13px;
+  line-height: 18px;
+}
+
+
+#feedback{
+  color:red;
+  width:50%;
+  position:fixed;;
+  text-align:center;
+  margin: 1.2em 25%;
+  background-color: #FFFF00;
+  z-index: 100;
+  padding: 10px;
+  border:  1px solid #333;
+}
+
+#divUser {
+ position: absolute;
+ right: 5px;
+ top:0px;
+}
+#currently {
+  white-space: nowrap;
+  width:400px;
+}
+
+#currently h1, #currently h2 {
+  display:inline;
+  font-size: small;
+  font-weight: normal;
+  margin:0px;
+  padding: 0px;
+  padding-right: 1em;
+}
+#currently h1 {
+  font-weight: bold;
+
+}
+
+
+.formwithnote {
+  width: 600px;
+  margin:auto;
+}
+.formwithnote .note {
+  margin-top: 30px;
+  width:200px;
+  float:left;
+  border: 1px solid #666;
+  background-color: #99FF99;
+  border-right:none;
+  height: 20em;
+}
+.note p {
+  padding:4px;
+}
+#loginform, #signupform {
+  width: 300px;
+  margin-top: 30px;
+  float:left;
+  border: 1px solid #666;
+  background-color: #99FF99;
+  border-left: 1px dotted #666;
+  height: 20em;
+}
+#loginform .bod, #signupform .bod{
+  padding:6px;
+}
+#loginform input.primary, #signupform input.primary {
+  float:right;
+  margin-top: 2em;
+}
+#loginform h3, .formwithnote .note h3, #signupform h3 {
+  text-align: center;
+  margin-bottom: 10px;
+  background-color: #669966;
+  padding:3px;
+  border-bottom:  1px solid #666;
+}
+
+
+h3 {
+  margin:0px;
+  padding:0px;
+}
+#mainContent {
+  clear:both;
+  padding-top: 4px;
+  background-color: #669966;
+}
+#content {
+  margin-left: 10px;
+  margin-right:10px;
+}
+
+.listBlock {
+  background-color: #99cc99;
+  padding:6px;
+}
+.listBlock .entry {
+  position:relative;	
+  display:block;
+  padding-bottom: 20px;
+  clear:both;
+  border-bottom: 1px solid black;
+}
+.listBlock .entry .edit {
+  float:left;
+  font-size: smaller;
+  color: #669966;
+  font-weight: normal;
+}
+ .listBlock .entry .display a {
+  font-size: smaller;
+  color: #669966;
+  font-weight: normal;
+  
+ }
+.listBlock .entry .edit:hover, .listBlock .entry .display a:hover {
+  background-color: transparent;
+  color: #336633;
+}
+.listBlock .entry .abstract {
+  width:40%;
+  float:right;
+}
+.listBlock .entry .mainInfo {
+  padding-left: 2em;
+}
+.listBlock .entry .mainInfo span{
+  font-size: smaller;
+}
+.listBlock .new .status {
+  color:#3A2BD2;
+}
+.listBlock .waiting .status {
+  color:#A69000;
+}
+.listBlock .pending .status {
+  color:#993333;
+}
+
+
+pre {
+  background-color: #eee;
+  padding: 10px;
+  font-size: 11px;
+}
+
+a { color: #000; }
+a:visited { color: #666; }
+a:hover { color: #fff; background-color:#000; }
+
+.fieldWithErrors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+#ErrorExplanation {
+  width: 400px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+
+#ErrorExplanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  background-color: #c00;
+  color: #fff;
+}
+
+#ErrorExplanation p {
+  color: #333;
+  margin-bottom: 0;
+  padding: 5px;
+}
+
+#ErrorExplanation ul li {
+  font-size: 12px;
+  list-style: square;
+}
+
+
+
+
+
+
+
+
+
+#answers .answer {
+  margin-left:4em;
+  border: 1px solid #999966;
+}
+
+#answers h2 {
+  background-color:#999966;
+}
+
+.profileImage {
+float:right;
+}
+
+
+body.edit form .title {
+  border:none;
+}
+
+#edit_tool_bar {
+ float:right;
+}
+#edit_tool_bar input,#edit_tool_bar select  {
+  margin-top:2px;
+  border: 1px solid #999966;
+}
+#edit_tool_bar select {
+
+}
+
+form .fieldPair {
+  position:relative;
+}
+form .fieldPair div{
+  width:25em;
+  float:left;
+}
+
+form .optional {
+  clear:left;
+  padding-top:1em;
+}
+form .optional label a, form .optional label a:visited{
+  color:black; 
+  text-decoration:none;
+}
+form .optional label a:hover {
+  background-color: red;
+}
+
+form .optional .wrapper {
+  width: 50em;
+  border: 1px solid grey;
+  padding: 4px;
+}
+
+form .mainform textarea {
+  width: 100%;
+}
+form .mainForm #pageContent div.content{
+  margin-right:220px;
+}
+
+
+
+
+#image_upload, #teaser_form, #newHeadlineForm  {
+  position:absolute;
+  top: 50px;
+  left: 25%;
+  background-color: #DAE0D2;
+  border: 1px solid #333;
+  padding: 10px;
+  width: 50%;
+  z-index:100;
+}
+
+#image_upload input, #teaser_form input {
+  font-size: 10px;
+  float:right;
+  margin-right: 20px;
+  margin-top: 5px;
+  clear:right;
+}
+
+#image_upload label, #teaser_form label {
+  display:block;
+  font-weight: bold;
+}
+
+#image_upload .submit, #teaser_form .submit {
+  margin-bottom: 5px;
+}
+#image_upload .closebutton, #teaser_form .closebutton {
+  float:right;
+  border: 1px solid #000;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: smaller;
+  line-height: 1em;
+}
+
+#teaser_image_block {
+  float:right;
+  margin-right:10px;
+ }
+
+#teaser_image {
+  width:150px;
+  height:100px;
+  padding:2px 2px 2px 2px;
+  background-color: white;
+  border: 1px solid #666633;
+}
+
+#teaser_image a img{
+  border:none;
+}
+#teaser_image a.change{
+  text-decoration:none;
+}
+#teaser_image a.change span{
+  display:none;
+  position:absolute;
+  top: 1em;
+  margin-top:8px;
+  width:142px;
+  height:52px;
+  border: 4px solid #993333;
+  text-decoration:none;
+  text-align:center;
+  font-weight: bold;
+  padding-top: 40px;
+  color:red;
+  text-shadow:#663333 2px 2px 3px;
+
+    -moz-shadow-direction: bottom-right;
+    -moz-shadow-width: 5px;
+    -moz-shadow-color-start: #000;
+    -moz-shadow-color-stop: #000;
+    -moz-shadow-opacity-start: 1.0;
+    -moz-shadow-opacity-stop: 0;
+    -moz-shadow-type: linear; 
+    -moz-opacity:.8;
+    opacity:.8;
+    -moz-border-radius: 7px;
+}
+#teaser_image a.change:hover span{
+  display:block;
+}
+.mainform {
+  clear:both;
+}
+.mainform .section {
+  position:relative;
+  top:-2px;
+  padding: 2px;
+  padding-top:10px;
+  background-color: #99cc99;
+  z-index: 10;
+  border: 1px solid #669966;
+}
+
+
+#toolBlock {
+  position:absolute;
+  right:0px;
+  z-index:200;
+  width:200px;
+  background-color: white;
+  padding: 4px 0px 4px 4px;
+  border: 1px solid #666;
+  border-right: 0px;
+  overflow: visible;
+}
+
+
+.someTest {
+  position:absolute;
+   width:400px;
+   left: -50px;
+   background-color:pink;
+   z-index: 400;
+}
+
+#tools {
+  
+}
+#tools .content {
+  background-color: #FFFF99;
+  
+}
+#tools .header {
+  padding: 3px 2px;
+  white-space: nowrap;
+  
+}
+#tools .header a.addButton {
+  color:black;
+  background-color: white;
+  border: 1px solid black;
+  text-decoration: none;
+  width: 1em;
+}
+#tools .header a.addButton:hover {
+  background-color: black;
+  border-color: white;
+  color: white;
+}
+
+#imageList {
+  
+}
+
+#imageList .imageBlock {
+  
+  text-decoration: none;
+  display:block;
+  overflow: visible;
+  
+}
+#imageList .imageBlock .imageBox{
+  position:absolute;
+  left: 0px;
+  top: 0px;
+  width: 200px;
+  display:none;
+  background-color: white;
+  padding:10px;
+  border: 1px solid black;
+  color:black;
+  z-index:400;
+  margin-left: -215px;
+}
+#imageList div.imageBlock:hover .imageBox{
+  display:block;
+}
+#imageList .imageName {
+ overflow:hidden;
+}
+#imageList .imageName input{
+ border-width: 0px;
+ background: transparent;
+ width: 400px;
+ display:block;
+}
+#imageList div.imageBlock:hover .imageName input{
+ background-color: #666699;
+}
+#mTextHelp, #imageList {
+  overflow:auto;
+}
+
+.progressBar {
+  display:none;}
+.progressBar .border {
+  background-color: white; border: 1px solid grey; width: 150px; }
+.progressBar .background {
+  background-color: #333;
+  height: 9px; width: 0%; }
+.uploadStatus {
+  background-color:yellow;
+}
+
+
+.help, .help p {
+  font-size: x-small;
+}
+.help pre {
+  background-color: transparent;
+  padding: 0px;
+  margin: 0px;
+}
+
+.beta {
+  margin: 2px 2px;
+  border:1px solid red;
+  background-color: #FFFFFF;
+}
+.beta h3 {
+  background-color:red;
+}
+
+
+.personName, #participants li ul li.personName,  #contributors li ul li.personName{
+  border: 1px solid #999;
+  background-color: #cfc;
+  padding: 5px 10px;
+}
+
+.personName a {
+  float:right;
+  text-decoration:none;
+  padding:0px 2px;
+  border: 1px solid #999;
+  
+}
+
+
+.blockTriplet {
+  width:100%;
+}
+
+.tripOne, .tripTwo, .tripThree {
+  float:left;
+  width:30%;
+}
+
+.blockDouble {
+	width:100%;
+}
+.doubleOne {
+float:left;
+	width:60%;
+}
+.doubleTwo {
+	float:left;
+	width:30%;
+	margin-left:10px;
+}
+
+hr { clear:both;}
+
+
+#peopleNav {
+  float:left;
+  width:302px;
+  background-color:transparent;
+  font-size:93%;
+  line-height:normal;
+  border-bottom: 1px solid #71806E;
+  padding-top: 1ex;
+  }
+#peopleNav ul {
+  position:relative;
+  top:1px;
+  margin:0;
+  padding:10px 10px 0;
+  list-style:none;
+  }
+#peopleNav li {
+  float:left;
+  margin:0;
+  padding:1px 2px 0 0;
+  border-bottom:1px solid #71806E;
+  }
+#peopleNav a {
+  float:left;
+  display:block;
+  width:.1em;
+  background-color: #B5CCAF;
+  padding:2px 5px 2px 5px;
+  text-decoration:none;
+  font-weight:bold;
+  color:#71806E;
+  border:1px solid #666;
+  border-bottom:none;
+  
+  }
+#peopleNav > ul a {width:auto;}
+/* Commented Backslash Hack hides rule from IE5-Mac \*/
+#peopleNav a {float:none;}
+/* End IE5-Mac hack */
+#peopleNav a:hover {
+  background-color: #71806E;
+  color: #B5CCAF;
+  }
+
+#peopleNav a.selected {
+  background-color: white;
+  text-align:right;
+  padding-bottom:4px;
+  border:1px solid #71806E;
+  border-bottom: none;
+}
+
+#peoplenav li.selected {
+  border-bottom: none;
+  padding-top:0px;
+}
+  
+
+
+#geekPeople, #searchPeople {
+  clear:both;
+  padding:8px 10px;
+  width:280px;
+}
+#geekPeople ul, #searchPeople ul {
+  list-style:none;
+}
+.peopleContent {
+  background-color:white;
+  border: 1px solid #71806E;
+  border-top:none;
+}
+
+#participants, #contributors {
+  list-style:none;
+  margin:0px;
+  padding:0px;
+}
+#participants li ul, #contributors li ul {
+  list-style:none;
+}
+#participants li, #contributors li {
+  background-color: rgb(255, 255, 255);
+  border: 1px solid #666;
+  padding:9px;
+  margin:2px;
+}
+#participants li ul li, #contributors li ul li{
+  background-color: inherit;
+  border: none;
+  padding:0px;
+  margin:0px;
+}
+#headlines li {
+	list-style:none;
+	margin:0px 0px 5px 0px;
+	border: 1px solid silver;
+	border-left: 8px solid silver;
+	padding-left: 4px;
+	background-color: white;
+	border-color: silver;
+}
+#headlines li.on {
+	border-color: green;
+	
+}
+#headlines .note {
+	color:  #333;
+	font-size: x-small;
+}
+
+.warning {
+	border: 10px red solid;
+}
+.inlineEdit {min-height:2em;min-width:2em;display:block;}
+
+.headlineStatus {background-color:white;border:1px solid green;padding:2px;}
+
+#headlines li .handle {
+	display:none;
+}
+#headlines.sortable li .handle {
+	display:block;
+	float:left;
+	height:100px;
+	background-color: yellow;
+	border: 1px solid black;
+	
+}

@@ -1,0 +1,50 @@
+<%= error_messages_for 'show' %>
+
+<!--[form:show]-->
+
+<div class="section" id="section1">
+<div class="showtimeForm"><label for="show_showtime">Showtime</label><br/>
+<%= date_select 'show', 'showtime'  %> @ 10:00 AM
+<input type="hidden" name="show[showtime(4i)]" value="10">
+<input type="hidden" name="show[showtime(5i)]" value="00">
+</div>
+
+<%= hidden_field 'show', 'lock_version' %>
+
+<p class="title"><label for="show_title">Title</label><br/>
+<%= text_field 'show', 'title' , "size" => 64 %></p>
+
+<% if @existing_show and !(@show.title == @existing_show.title) %>
+<p><label for="existing_show_title">Title that you are Overwriting</label><br/>
+<%= text_field 'existing_show', 'title'  %></p>
+<% end %>
+
+
+<!--p class="category"><label for="show_category">Category</label><br/>
+<%= text_field 'show', 'category'  %></p-->
+
+<!--p class="promo"><label for="show_promo"><%= link_to_function("Promo","toggleWithBlind('show_promo');")%></label><br/>
+<%= text_area 'show', 'promo', :cols => 80, :rows => 5, :style => 'display:none;'  %></p-->
+
+<p><label for="show_abstract">Abstract</label><br/>
+<%= text_area 'show', 'abstract', :cols => 80, :rows => 5  %></p>
+
+<% if @existing_show and !(@show.abstract == @existing_show.abstract) %>
+<p><label for="existing_show_abstract">Abstract  that you are Overwriting</label><br/>
+<%= text_area 'existing_show', 'abstract', :cols => 80, :rows => 5  %></p>
+<% end %>
+</div>
+
+
+<div class="section" id="section2">
+<p><label for="show_content">Content</label><br/>
+<%= text_area 'show', 'content', :cols => 80, :rows => 30  %></p>
+
+<% if @existing_show and !(@show.content == @existing_show.content) %>
+<p><label for="existing_show_content">Content that you are Overwriting</label><br/>
+<%= text_area 'existing_show', 'content', :cols => 80, :rows => 30  %></p>
+<% end %>
+</div>
+
+<!--[eoform:show]-->
+

@@ -1,0 +1,26 @@
+<h1>Listing images</h1>
+
+<table>
+  <tr>
+    <th>name</th>
+    <th>image</th>
+    <th>ToDo</th>
+  </tr>
+  
+<% for image in @images %>
+  <tr>
+    <td><%=h image["name"] %></td>
+    <td><img src="/images/render_resized_image/<%= image["id"] %>?width=80&height=40" /></td>
+    <td><%= link_to 'Show', :action => 'show', :id => image %>
+    <%= link_to 'Edit', :action => 'edit', :id => image %>
+    <%= link_to 'Destroy', {:action => 'destroy', :id => image}, :confirm => "Are you sure?" %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to "Previous page", { :page => @image_pages.current.previous } if @image_pages.current.previous %>
+<%= link_to "Next page", { :page => @image_pages.current.next } if @image_pages.current.next %> 
+
+<br />
+
+<%= link_to 'New image', :action => 'new' %>

@@ -1,0 +1,131 @@
+<script>
+function reloadTeaserImage() {
+        new Ajax.Updater('teaser_image', '/images/display_teaser/<%=@article.id%>?object_type=article', {asynchronous:true, evalScripts:true});
+}
+function reloadImageList() {
+        Effect.BlindUp($('image_upload'));
+        new Ajax.Updater('imageListItems', '/images/show_image_list/?article_id=<%=@article.id%>', {asynchronous:true, evalScripts:true});
+}
+var currentStatus = "<%= @article.status %>";
+if (document.addEventListener) {
+	document.addEventListener("DOMContentLoaded", init, null);
+} else {
+  alert('Please get a better browser.\nWe need to use addEventListener and \nyour browser does not support that.')
+}
+</script>
+
+    <%= teaserForm(@article,"article") %>
+    <%= showImageForm(@article, "article") %>
+
+
+
+<%= start_form_tag :action => 'update', :id => @article %>
+<div class="warning note"><p>WARNING: Articles are being migrated to the Drupal system. You can not publish new articles with this system. Additionally if you change these article URLS you will break the ability to get to these articles.</p> 
+	
+<p>
+All of the existing article urls are coded into the geekspeak.org apache config file as url based rewrite condition that redirects to cocoon, but other urls (new or changed) will go to the Drupal system.</p></div>
+
+<div class="pagehead">
+  <div id="edit_tool_bar">
+    <%= select "article", "status", [["New", "new"], ["Pending", "pending"],["Live","live"]], :id=>'article_status' %>
+    <%= submit_tag 'Save' %>
+  </div>
+  <div id="currently">editing:
+  	<h1><%=h @article.title %></h1>
+  	<h2> </h2>
+	<%=@article.link_to %></div>
+</div>
+
+  
+<div id="sectionNav">
+<ul>
+<li><%= link_to_function "Abstract Info", "showHideSection('abstract',this);", {:class=>'sectionBtn',:id=>'sec1btn'} %></li>
+<li><%= link_to_function "Page Content", "showHideSection('pageContent',this);", {:class=>'sectionBtn',:id=>'sec2btn'} %></li>
+<li><%= link_to_function "People Involved", "showHideSection('articleContributor',this);", {:class=>'sectionBtn',:id=>'sec3btn'} %></li>
+</ul>
+</div>
+  
+
+<div class="mainform">
+<div id="pageSections">
+
+<div class="section" id="abstract" style="display:none;">
+  
+ <div id="teaser_image_block">
+  <div class="header">Teaser Image</div>
+  <div class="content">
+    <%= teaserOrAddLink(@article) %>
+  </div>
+ </div>
+ 
+  <%= render_partial "form" %>
+ </div>
+
+
+
+
+
+
+
+<div class="section" id="pageContent" style="display:none;">
+
+
+<% @obj = @article %>
+<%= render_partial "layouts/toolBlock"%>
+ 
+<div class="content">
+<p><label for="article_content">Content</label><br/>
+<%= text_area 'article', 'content', "rows" => 20, "cols" => 80  %></p>
+</div>
+
+</div>
+
+<%= end_form_tag %>
+
+
+
+<div class="section" id="articleContributor" style="display:none;">
+  <div class="blockTriplet">
+   <div class="tripOne">
+    <p>Grab a person's name and drag it to the role they will be for this article.
+    This data is saved imediatly.</p>
+	<p>Though this content is optional it would be nice to populate it for each
+	article from here on out. At some point I will extend the site's public interface
+	to display this contributor data.</p>
+   </div>
+	
+   <div class="tripTwo">
+
+    <div id="peopleNav">
+	<ul>
+	  <li><%= link_to_function "Geeks", "showHidePeopleList('geekPeople',this);", {:class=>'sectionBtn',:id=>'geeks_btn'} %></li>
+	  <li><%= link_to_function "Search", "showHidePeopleList('searchPeople',this);", {:class=>'sectionBtn',:id=>'search_btn'} %></li>
+	</ul>
+    </div>
+    <div id="geekPeople" class="peopleContent">
+      <%= render :partial => '/layouts/display_dragable_geeks' %>
+    </div>
+    <div id="searchPeople" class="peopleContent">
+      <%= render :partial => '/layouts/search_for_people' %>
+    </div>
+
+   </div>
+
+  
+   <div class="tripThree">
+		<ul id="contributors">
+<% Contributor::ROLES.each do |role| %>
+	  <li id="<%=role%>Role"><%=displayContributorsInRole(@article,role)%></li>
+  <%= drop_receiving_element("#{role}Role",
+	:url => {:controller=>"contributors", :action => "create", :article_id=> @article, :role => role},
+	:before => {visual_effect(:highlight, "#{role}Role"), "$('#{role}RoleStatImg').style.display='block'"} )%>
+<% end %>
+	</ul>
+	<div id="contributorStatus"></div>
+   
+   
+    </div>
+  </div>
+  
+<br clear="all">
+</div>

@@ -1,0 +1,12 @@
+	<ul id="groups">
+	  <% @groups.each do |group| -%>
+	  <%= displayGroup(group)%>
+	  <% end -%>
+	</ul>
+	
+	<h2>Create a new Group</h2>
+	<%= form_remote_tag :url => { :action => 'create_group' } %>
+	Name <input name="group[name]"><br />
+	Description <input name="group[description]"><br />
+	<%= submit_tag 'Create' %>
+	<%= end_form_tag %>

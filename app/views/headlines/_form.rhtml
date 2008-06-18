@@ -1,0 +1,16 @@
+<%= error_messages_for 'headline' %>
+
+<!--[form:headline]-->
+
+<p class="title"><label for="headline_title">Title</label><br/>
+<%= text_field 'headline', 'title'  %></p>
+
+<p><label for="headline_url">URL</label><br/>
+<%= text_field 'headline', 'url'  %></p>
+
+<p><label for="headline_content">Content</label><br/>
+<%= text_area 'headline', 'content', :cols => 40, :rows => 10  %></p>
+
+
+<!--[eoform:show]-->
+

@@ -1,0 +1,20 @@
+<%= error_messages_for 'question' %>
+
+<!--[form:question]-->
+<p><label for="question_person_name">Person name</label><br/>
+<%= text_field 'question', 'person_name'  %></p>
+
+<p><label for="question_location">Location</label><br/>
+<%= text_field 'question', 'location'  %></p>
+
+<p><label for="question_person_email">Person email</label><br/>
+<%= text_field 'question', 'person_email'  %> (never published)</p>
+<hr>
+<p><label for="question_title">Title</label><br/>
+<%= text_field 'question', 'title'  %></p>
+
+<p><label for="question_content">Content</label><br/>
+<%= text_area 'question', 'content', "cols" => 40  %></p>
+
+<!--[eoform:question]-->
+

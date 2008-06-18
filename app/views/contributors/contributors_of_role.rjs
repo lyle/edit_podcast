@@ -1,0 +1,4 @@
+if @article && @article.errors.empty?
+  page.replace_html "#{@role}Role", displayContributorsInRole(@article,@role)
+  page.visual_effect :highlight, "#{@role}Role", :endcolor=>"'#ffffff'"
+end 

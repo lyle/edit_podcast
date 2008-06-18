@@ -1,0 +1,7 @@
+  groupList = ''
+  @groups.each do |group|	  
+    groupList = groupList + displayGroup(group)
+  end
+  page.replace_html 'groups', groupList
+  page.visual_effect :highlight, 'groups', :duration => 3
+

@@ -1,0 +1,9 @@
+<%= error_messages_for 'answer' %>
+
+<!--[form:answer]-->
+<p><label for="answer_content">Answer</label><br/>
+<%= text_area 'answer', 'content', "cols" => 80, "rows" => 20   %></p>
+
+<%= hidden_field 'answer', 'question_id'  %></p>
+<!--[eoform:answer]-->
+

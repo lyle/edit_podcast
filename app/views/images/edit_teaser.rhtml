@@ -1,0 +1,10 @@
+
+<%= start_form_tag({:controller => 'images', :action => 'update_teaser', :id => @image}, :multipart => true)%>
+<input type="hidden" name="show_id" value="<%= @show.id  %>">
+
+  <%= render_partial "teaser_upload_form" %>
+   <% imageSrc = url_for(:controller => 'images', :action => 'showimage', :id => @image)%>
+      <%= "<img src=\"#{imageSrc}\" width=\"150\" height=\"100\" style=\"float:right;padding-right:30px;\" />" %>
+
+  <%= submit_tag "Replace" %>
+</form>

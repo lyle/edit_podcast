@@ -1,0 +1,6 @@
+<% for user in @users %>
+<div id="user<%=user.id%>">
+<%= user.login%>
+</div>
+<%= draggable_element "user#{user.id}", :revert => true %>
+<% end %>

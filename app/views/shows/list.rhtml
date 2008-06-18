@@ -1,0 +1,23 @@
+<div class="listBlock">
+
+
+  
+<% for show in @shows %>
+<div class="entry <%=h show.status %>">
+  <div class="abstract"><%=h truncate show.abstract, 80, truncate_string="..." %></div>
+  <%= link_to 'Edit', {:action => 'edit', :id => show}, {:class=>'edit'} %>
+  <div class="mainInfo">
+    <h3 class="title"><%=h show.showtime.strftime("%Y-%m-%d") %> <%=h show.title %>
+    <span class="display"><%= linkToShowPreview(show) %></span></h3>
+    <span class="status"><%=h show.status %></span> | Last edited <%=h show.updated_on.strftime("%A %B %d at %I:%M %p") %>
+  </div>
+</div>
+<% end %>
+
+
+
+<%= link_to 'Previous page', { :page => @show_pages.current.previous } if @show_pages.current.previous %>
+<%= link_to 'Next page', { :page => @show_pages.current.next } if @show_pages.current.next %> 
+</div>
+
+<br />

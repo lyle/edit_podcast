@@ -1,0 +1,8 @@
+if @discussion && @discussion.errors.empty?
+  page.insert_html :bottom,  "headlines", render( :partial => "headline_discussions/headline", :locals=>{:headline =>@headline})
+  page.visual_effect :highlight, "headlinediscussion_#{@headline.headline_discussion.id}"
+end  
+page.call "sorting_off", 'headlines', 'sort_headlines', 'off'
+page.replace_html "feedback", flash[:notice]
+page.visual_effect :appear, "feedback", :duration => 0.2
+page.visual_effect :fade, 'feedback',:delay => 5.0, :duration => 2.0

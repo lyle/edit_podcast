@@ -1,0 +1,5 @@
+if @user && @group && @group.errors.empty? && @user.errors.empty?
+  daText = render(:partial => 'group_member', :collection => [@user])
+  page.insert_html :bottom, 'groupMembers', daText
+end 
+page.visual_effect :highlight, 'groupMembers', :duration => 3

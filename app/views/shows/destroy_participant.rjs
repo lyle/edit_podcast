@@ -1,0 +1,7 @@
+  participantList = ''
+  @show.participants.each do |participant|	  
+    participantList = participantList + displayParticipant(participant)
+  end
+  page.replace_html 'participants', participantList
+  page.visual_effect :highlight, 'participants', :duration => 3
+

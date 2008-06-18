@@ -1,0 +1,171 @@
+LAME version 3.96.1 (http://lame.sourceforge.net/)
+
+usage: lame [options] <infile> [outfile]
+
+    <infile> and/or <outfile> can be "-", which means stdin/stdout.
+
+RECOMMENDED:
+    lame -h input.wav output.mp3
+
+OPTIONS:
+  Input options:
+    -r              input is raw pcm
+    -x              force byte-swapping of input
+    -s sfreq        sampling frequency of input file (kHz) - default 44.1 kHz
+    --bitwidth w    input bit width is w (default 16)
+    --mp1input      input file is a MPEG Layer I   file
+    --mp2input      input file is a MPEG Layer II  file
+    --mp3input      input file is a MPEG Layer III file
+    --nogap <file1> <file2> <...>
+                    gapless encoding for a set of contiguous files
+    --nogapout <dir>
+                    output dir for gapless encoding (must precede --nogap)
+    --nogaptags     allow the use of VBR tags in gapless encoding
+
+  Operational options:
+    -m <mode>       (s)tereo, (j)oint, (f)orce, (m)ono  
+                    default is (s) or (j) depending on bitrate
+                    force = force ms_stereo on all frames.
+    -a              downmix from stereo to mono file for mono encoding
+    --freeformat    produce a free format bitstream
+    --decode        input=mp3 file, output=wav
+    -t              disable writing wav header when using --decode
+    --comp  <arg>   choose bitrate to achive a compression ratio of <arg>
+    --scale <arg>   scale input (multiply PCM data) by <arg>
+    --scale-l <arg> scale channel 0 (left) input (multiply PCM data) by <arg>
+    --scale-r <arg> scale channel 1 (right) input (multiply PCM data) by <arg>
+    --replaygain-fast   compute RG fast but slightly inaccurately (default)
+    --replaygain-accurate   compute RG more accurately and find the peak sample
+    --noreplaygain  disable ReplayGain analysis
+    --clipdetect    enable --replaygain-accurate and print a message whether
+                    clipping occurs and how far the waveform is from full scale
+    --preset type   type must be "medium", "standard", "extreme", "insane",
+                    or a value for an average desired bitrate and depending
+                    on the value specified, appropriate quality settings will
+                    be used.
+                    "--preset help" gives more info on these
+
+
+  Verbosity:
+    --disptime <arg>print progress report every arg seconds
+    -S              don't print progress report, VBR histograms
+    --nohist        disable VBR histogram display
+    --silent        don't print anything on screen
+    --quiet         don't print anything on screen
+    --brief         print more useful information
+    --verbose       print a lot of useful information
+
+  Noise shaping & psycho acoustic algorithms:
+    -q <arg>        <arg> = 0...9.  Default  -q 5 
+                    -q 0:  Highest quality, very slow 
+                    -q 9:  Poor quality, but fast 
+    -h              Same as -q 2.   Recommended.
+    -f              Same as -q 7.   Fast, ok quality
+
+
+  CBR (constant bitrate, the default) options:
+    -b <bitrate>    set the bitrate in kbps, default 128 kbps
+    --cbr           enforce use of constant bitrate
+
+  ABR options:
+    --abr <bitrate> specify average bitrate desired (instead of quality)
+
+  VBR options:
+    -v              use variable bitrate (VBR) (--vbr-old)
+    --vbr-old       use old variable bitrate (VBR) routine
+    --vbr-new       use new variable bitrate (VBR) routine
+    -V n            quality setting for VBR.  default n=4
+                    0=high quality,bigger files. 9=smaller files
+    -b <bitrate>    specify minimum allowed bitrate, default  32 kbps
+    -B <bitrate>    specify maximum allowed bitrate, default 320 kbps
+    -F              strictly enforce the -b option, for use with players that
+                    do not support low bitrate mp3
+    -t              disable writing LAME Tag
+    -T              enable and force writing LAME Tag
+
+
+  ATH related:
+    --noath         turns ATH down to a flat noise floor
+    --athshort      ignore GPSYCHO for short blocks, use ATH only
+    --athonly       ignore GPSYCHO completely, use ATH only
+    --athtype n     selects between different ATH types [0-4]
+    --athlower x    lowers ATH by x dB
+    --athaa-type n  ATH auto adjust types 1-3, else no adjustment
+    --athaa-loudapprox n   n=1 total energy or n=2 equal loudness curve
+    --athaa-sensitivity x  activation offset in -/+ dB for ATH auto-adjustment
+
+  PSY related:
+    --short         use short blocks when appropriate
+    --noshort       do not use short blocks
+    --allshort      use only short blocks
+    --cwlimit <freq>  compute tonality up to freq (in kHz) default 8.8717
+    --notemp        disable temporal masking effect
+    --nssafejoint   M/S switching criterion
+    --nsmsfix <arg> M/S switching tuning [effective 0-3.5]
+    --interch x     adjust inter-channel masking ratio
+    --ns-bass x     adjust masking for sfbs  0 -  6 (long)  0 -  5 (short)
+    --ns-alto x     adjust masking for sfbs  7 - 13 (long)  6 - 10 (short)
+    --ns-treble x   adjust masking for sfbs 14 - 21 (long) 11 - 12 (short)
+    --ns-sfb21 x    change ns-treble by x dB for sfb21
+    --shortthreshold x,y  short block switching threshold, x for L/R/M channel, y for S channel
+  Noise Shaping related:
+    --substep n     use pseudo substep noise shaping method types 0-2
+
+
+  experimental switches:
+    -X n[,m]        selects between different noise measurements
+                    n for long block, m for short. if m is omitted, m = n
+    -Y              lets LAME ignore noise in sfb21, like in CBR
+    -Z [n]          toggles the scalefac-scale and subblock gain feature on
+                    if n is set and minus, only scalefac-scale is enabled 
+
+
+  MP3 header/stream options:
+    -e <emp>        de-emphasis n/5/c  (obsolete)
+    -c              mark as copyright
+    -o              mark as non-original
+    -p              error protection.  adds 16 bit checksum to every frame
+                    (the checksum is computed correctly)
+    --nores         disable the bit reservoir
+    --strictly-enforce-ISO   comply as much as possible to ISO MPEG spec
+
+  Filter options:
+    -k              keep ALL frequencies (disables all filters),
+                    Can cause ringing and twinkling
+  --lowpass <freq>        frequency(kHz), lowpass filter cutoff above freq
+  --lowpass-width <freq>  frequency(kHz) - default 15% of lowpass freq
+  --highpass <freq>       frequency(kHz), highpass filter cutoff below freq
+  --highpass-width <freq> frequency(kHz) - default 15% of highpass freq
+  --resample <sfreq>  sampling frequency of output file(kHz)- default=automatic
+
+
+  ID3 tag options:
+    --tt <title>    audio/song title (max 30 chars for version 1 tag)
+    --ta <artist>   audio/song artist (max 30 chars for version 1 tag)
+    --tl <album>    audio/song album (max 30 chars for version 1 tag)
+    --ty <year>     audio/song year of issue (1 to 9999)
+    --tc <comment>  user-defined text (max 30 chars for v1 tag, 28 for v1.1)
+    --tn <track>    audio/song track number (1 to 255, creates v1.1 tag)
+    --tg <genre>    audio/song genre (name or number in list)
+    --add-id3v2     force addition of version 2 tag
+    --id3v1-only    add only a version 1 tag
+    --id3v2-only    add only a version 2 tag
+    --space-id3v1   pad version 1 tag with spaces instead of nulls
+    --pad-id3v2     pad version 2 tag with extra 128 bytes
+    --genre-list    print alphabetically sorted ID3 genre list and exit
+    --ignore-tag-errors  ignore errors in values passed for tags
+
+    Note: A version 2 tag will NOT be added unless one of the input fields
+    won't fit in a version 1 tag (e.g. the title string is longer than 30
+    characters), or the '--add-id3v2' or '--id3v2-only' options are used,
+    or output is redirected to stdout.
+
+MPEG-1   layer III sample frequencies (kHz):  32  48  44.1
+bitrates (kbps): 32 40 48 56 64 80 96 112 128 160 192 224 256 320
+
+MPEG-2   layer III sample frequencies (kHz):  16  24  22.05
+bitrates (kbps):  8 16 24 32 40 48 56 64 80 96 112 128 144 160
+
+MPEG-2.5 layer III sample frequencies (kHz):   8  12  11.025
+bitrates (kbps):  8 16 24 32 40 48 56 64 80 96 112 128 144 160
+

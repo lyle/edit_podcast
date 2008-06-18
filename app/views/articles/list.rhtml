@@ -1,0 +1,27 @@
+
+<div class="warning note"><p>WARNING: Articles are being migrated to the Drupal system. You can not publish new articles with this system. Additionally if you change these article URLS you will break the ability to get to these articles.</p> 
+	
+<p>
+All of the existing article urls are coded into the geekspeak.org apache config file as url based rewrite condition that redirects to cocoon, but other urls (new or changed) will go to the Drupal system.</p></div>
+<div class="listBlock">
+  
+<% for article in @articles %>
+<div class="entry <%=h article.status %>">
+  <div class="abstract"><%=h truncate article.abstract, 80, truncate_string="..." %></div>
+  <%= link_to 'Edit', {:action => 'edit', :id => article}, {:class=>'edit'} %>
+  <div class="mainInfo">
+    <h3 class="title"><%=h article.title %>
+    <span class="display"><%= article.link_to %></span></h3>
+    <span class="status"><%=h article.status %></span>| Publish Time: <%=h article.publishdate.strftime("%Y-%m-%d at %I:%M %p") %> | Created by: <%=h article.owner.name %><br />
+    Last edited <%=h time_ago_in_words(article.updated_on, include_seconds = false) %> ago.
+  </div>
+</div>
+<% end %>
+
+
+<%= link_to 'Previous page', { :page => @article_pages.current.previous } if @article_pages.current.previous %>
+<%= link_to 'Next page', { :page => @article_pages.current.next } if @article_pages.current.next %> 
+</div>
+<br />
+
+

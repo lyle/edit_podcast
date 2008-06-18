@@ -1,0 +1,28 @@
+<p>
+ <b>Group Name:</b> <%=@group.name%>
+</p>
+<p>
+ <b>Description:</b> <%=@group.description%>
+</p>
+<p>Created by <%=@group.creator.display_name%> on <%=@group.created_on%>.</p>
+
+<div class="blockPair">
+<h2>Members</h2>
+<div id="groupMembers">
+<%= render :partial => 'group_member', :collection => @group.users %>
+</div>
+
+<%= drop_receiving_element("groupMembers",
+	:url => {:controller=>"admin", :action => "add_member_to_group", :group_id=> "#{@group.id}"},
+	:before => "Element.hide(element); new Effect.Pulsate('groupMembers',{from:0.7, duration:5})" )%>
+
+</div>
+
+
+<div class="blockPair">
+<h2>People</h2>
+<%= render :partial => '/layouts/search_for_people' %>
+</div>
+<br clear="all">
+<%= link_to 'Edit', :action => 'edit_group', :id => @group %> |
+<%= link_to 'Back to Groups', :action => 'groups' %>

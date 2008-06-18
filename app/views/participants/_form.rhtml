@@ -1,0 +1,13 @@
+<%= error_messages_for 'participant' %>
+
+<!--[form:participant]-->
+<p><label for="participant_role">Role</label><br/>
+<%= text_field 'participant', 'role'  %></p>
+
+<p><label for="participant_created_at">Created at</label><br/>
+<%= datetime_select 'participant', 'created_at'  %></p>
+
+<p><label for="participant_updated_at">Updated at</label><br/>
+<%= datetime_select 'participant', 'updated_at'  %></p>
+<!--[eoform:participant]-->
+

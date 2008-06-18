@@ -1,0 +1,9 @@
+<div id="member_<%=group_member.id%>" class="personName">
+      <%= link_to_remote "X",
+		:before => "Element.update('member_#{group_member.id}', 'removing #{group_member.name}')",
+		:compleated => "Element.remove('member_#{group_member.id}')",
+		:url=>{:action=>"remove_member",
+		:group_id=>@group.id,
+		:user_id=>group_member.id} -%>
+      <%= group_member.name -%>
+</div>

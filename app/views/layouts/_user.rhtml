@@ -1,0 +1,1 @@
+<% if user %>  Logged in as <%= link_to (user.login, :controller => "account", :action => "show", :id => user.id ) %> |   <%= link_to "Log Out", :controller => "account", :action => "logout" %><% end %>

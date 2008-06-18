@@ -1,0 +1,14 @@
+<h1>New image</h1>
+
+<form action="/images/create" method="post" enctype="multipart/form-data">
+  <%= render_partial "form" %>
+  <%= submit_tag "Create" %>
+</form>
+			  
+
+<!-- %= start_form_tag :action => 'create' %-->
+  <!--%= render_partial "form" %-->
+  <!--%= submit_tag "Create" %-->
+<!--%= end_form_tag %-->
+
+<%= link_to 'Back', :action => 'list' %>

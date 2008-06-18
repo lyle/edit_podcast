@@ -1,0 +1,34 @@
+<li id="headlinediscussion_<%=headline.headline_discussion.id%>" class="news <%=headline.status%>">
+<span class="handle">drag here</span>
+
+
+
+<h3><span id="headline_<%= headline.id %>_title" class="inlineEdit"><%= headline.title %></span></h3>
+	
+<%= in_place_editor("headline_#{headline.id}_title", :size => 20, :url => {:controller => 'headlines', :action => 'set_title', :id => headline}) %>
+
+
+<table><tr><td class="inlineEdit">url:</td><td><span id="headline_<%= headline.id %>_url" class="inlineEdit"><%= headline.url %></span></td></tr></table>
+	
+<%= in_place_editor("headline_#{headline.id}_url", :size => 20, :url => {:controller => 'headlines', :action => 'set_url', :id => headline}) %>
+
+
+
+  <span id="headline_<%= headline.id %>_content" class="inlineEdit"><%= headline.content %></span>
+
+	<%= in_place_editor("headline_#{headline.id}_content", :cols => 30, :rows => 10, :url => {:controller => 'headlines', :action => 'set_content', :id => headline}) %>
+
+  <div class="note">
+		Status: <%= link_to_remote( headline.status,
+			{:url=>{:controller=>'headlines',:action=>'toggle_status',:id=>headline}},
+			{:id=>"headline_#{headline.id}_status",:class=>"headlineStatus"}) %>
+		
+		 created by
+<%=headline.user.name%>, updated on <%=headline.updated_at.strftime("%A %B %d at %I:%M %p")%> | <%= link_to_remote "delete", :confirm=>"Are you sure you want to delete this news item?",:url=>{:controller=>'headlines',:action=>'destroy',:id=>headline}%>
+
+<%= link_to_remote "&gt;&gt;", :url=>{:controller=>'headline_discussions',:action=>'destroy',:id=>headline.headline_discussion}%>
+
+</div>
+
+
+</li>

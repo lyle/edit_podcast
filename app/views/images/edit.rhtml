@@ -1,0 +1,12 @@
+<h1>Editing image</h1>
+<%= start_form_tag({:action => 'update', :id => @image}, :multipart => true)%>
+  <%= render_partial "form" %>
+  <%= submit_tag "Edit" %>
+</form>
+
+<p>
+  <img src="/images/showimage/<%= @image.id%>" height="<%=@image.height%>" width="<%=@image.width%>" />
+</p>
+
+<%= link_to 'Show', :action => 'show', :id => @image %> |
+<%= link_to 'Back', :action => 'list' %>

@@ -1,0 +1,268 @@
+
+
+   <script>
+   var startWidth, startTop, startRight;
+   var teaserFormShown = false;
+
+
+function reloadTeaserImage() {
+//this needs to be replaced with a generic version - see article edit.rhtml
+        new Ajax.Updater('teaser_image', '/images/display_show_teaser/<%=@show.id%>', {asynchronous:true, evalScripts:true});
+}
+
+function reloadImageList() {
+//this needs to be replaced with a generic version - see article edit.rhtml
+        new Ajax.Updater('imageListItems', '/images/show_image_list/?show_id=<%=@show.id%>', {asynchronous:true, evalScripts:true, onSuccess:flashImageList()});
+}
+
+function flashImageList() {
+  new Effect.Highlight('imageListItems', {startcolor:'#ffffff', endcolor:'#FFFF99'});
+}
+
+function showTeaserForm(url) {
+      if ( !teaserFormShown ) {
+        $('teaser_form').style.display = 'visible'
+        showTeaserUpload();
+        teaserFormShown = true;
+        //#$('toggle').innerHTML = 'Put Me Back';
+      }
+      else {
+        hideTeaserUpload();
+        teaserFormShown = false;
+        //#$('toggle').innerHTML = 'Size & Position Me';
+      }
+}
+
+   function showTeaserUpload() {
+      startWidth = $('teaser_form').offsetWidth;
+      startHeight = $('teaser_form').offsetHeight;
+      startTop   = $('teaser_form').offsetTop;
+      startLeft  = $('teaser_form').offsetLeft;
+       new Effect.Position( 'teaser_form', 
+                                    null, // x = 520 
+                                    $('teaser_image').offsetTop, // y = null (only move accross the x axis) 
+                                    200, // 500ms (1/2 second) 
+                                    10);
+     }
+
+   function setStatus(s,n) {
+      $('statusContainer').style.visibility = "visible";
+      $('statusMsg').innerHTML = s;
+      setTimeout( "$('statusContainer').style.visibility = 'hidden';", n );
+   }
+
+   function hideTeaserUpload() {
+      $('teaser_form').style.width = startWidth;
+      $('teaser_form').style.height = startHeight;
+      $('teaser_form').style.top   = startTop;
+      $('teaser_form').style.left  = startLeft;
+   }
+
+
+var currentStatus = "<%= @show.status %>";
+if (document.addEventListener) {
+    document.addEventListener("DOMContentLoaded", init, null);
+} else {
+  alert('Sorry but this browser does not meet the requirements for this site.')
+}
+
+</script>
+    <%= teaserForm(@show,"show") %>
+    <%= showImageForm(@show, "show") %>
+	<%=  form_remote_tag :url => {:controller => "headlines", :action => "create"}, :success =>"toggleWithBlind('newHeadlineForm');", :html => { :id => "newHeadlineForm", :style=> "display:none;" } %>
+	<%= link_to_function "X", "toggleWithBlind('newHeadlineForm');", {:class=>'closebutton'}%>
+	<h1>Create New News</h1>
+	<%=  	hidden_field_tag('show_id',@show.id) %>
+	<%=  	render :partial => "headlines/form" %>
+	<%=		submit_tag "Add News..."%>
+	<%=  end_form_tag() %>
+
+<%= start_form_tag :action => 'update', :id => @show %>
+
+<div class="pagehead">
+  <div id="edit_tool_bar">
+Status: <%= select "show", "status", [["New Show", "new"], ["Waiting", "waiting"], ["Pending Approval", "pending"],["Live","live"]], 
+	{id=>'show_status'} %>
+    <%= submit_tag 'Save', :onclick => "$('preview').value = 'false';" %>
+  </div>
+  <div id="currently">editing:
+  	<h1><%=h @show.showtime.strftime("%Y-%m-%d") %></h1>
+  	<h2><%=h @show.title %></h2>
+	<%= linkToShowPreview(@show) %>
+</div>
+
+
+<%= error_messages_for 'show' %>
+
+<div id="sectionNav">
+<ul>
+<li><%= link_to_function "Abstract Info", "showHideSection('abstract',this);", {:class=>'sectionBtn',:id=>'sec1btn'} %></li>
+<li><%= link_to_function "Page Content", "showHideSection('pageContent',this);", {:class=>'sectionBtn',:id=>'sec2btn'} %></li>
+<li><%= link_to_function "People Involved", "showHideSection('showParticipants',this);", {:class=>'sectionBtn',:id=>'sec3btn'} %></li>
+<li><%= link_to_function "News", "showHideSection('news',this);", {:class=>'sectionBtn',:id=>'sec4btn'} %></li>
+<!--li><%= link_to_function "Q&A", "showHideSection('comments',this);", {:class=>'sectionBtn',:id=>'sec5btn'} %></li-->
+</ul>
+</div>
+
+
+<div class="mainform">
+<div id="pageSections">
+
+<div class="section" id="abstract" style="display:none;">
+
+<div id="teaser_image_block">
+  <div class="header">Teaser Image</div>
+  <div class="content">
+    <%= teaserOrAddLink(@show) %>
+  </div>
+</div>
+
+<p class="title"><label for="show_title">Title</label><br/>
+<%= text_field 'show', 'title'  %></p>
+
+<div class="showtimeForm"><label for="show_showtime">Showtime</label><br/>
+<%= date_select 'show', 'showtime'  %> @ 10:00 AM
+<input type="hidden" name="show[showtime(4i)]" value="10">
+<input type="hidden" name="show[showtime(5i)]" value="00">
+</div>
+
+<%= hidden_field 'show', 'lock_version' %>
+
+
+
+<!--p class="category"><label for="show_category">Category</label><br/>
+<%= text_field 'show', 'category'  %></p-->
+
+<!--p class="promo"><label for="show_promo"><%= link_to_function("Promo","toggleWithBlind('show_promo');")%></label><br/>
+<%= text_area 'show', 'promo', :cols => 80, :rows => 5, :style => 'display:none;'  %></p-->
+
+<p><label for="show_abstract">Abstract</label><br/>
+<%= text_area 'show', 'abstract', :cols => 80, :rows => 5  %></p>
+
+<% if @existing_show and !(@show.abstract == @existing_show.abstract) %>
+<style>#sec1btn {border: 1px solid red !important;border-bottom: none !important;}</style>
+<p><label for="existing_show_abstract">Abstract from the Database</label><br/>
+<%= text_area 'existing_show', 'abstract', :cols => 80, :rows => 5  %></p>
+<% end %>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="section" id="pageContent" style="display:none;">
+
+
+<% @obj = @show %>
+<%= render_partial "layouts/toolBlock"%>
+
+
+<div class="content">
+<p><label for="show_content">Content</label><br/>
+<%= text_area 'show', 'content', :cols => 80, :rows => 20  %></p>
+
+<% if @existing_show and !(@show.content == @existing_show.content) %>
+<style>#sec2btn {border: 1px solid red !important; !important;border-bottom: none !important;}</style>
+<p><label for="existing_show_content">Content from the Database</label><br/>
+<%= text_area 'existing_show', 'content', :cols => 80, :rows => 30  %></p>
+<% end %>
+
+</div>
+
+</div>
+
+
+<%= end_form_tag %>
+
+
+  
+<div class="section" id="showParticipants" style="display:none;">
+  <div class="blockTriplet">
+   <div class="tripOne">
+    <p>Grab a person's name and drag it to the role they will be for this show.
+    This data is saved imediatly. At some point I will implement quick user creation,
+    so that we can have each of our guests be participants.</p>
+	<p>Though this content is optional it would be nice to populate it for each
+	show from here on out. At some point I will extend the site's public interface
+	to display this participation data.</p>
+   
+   
+
+	
+	
+   </div>
+	
+   <div class="tripTwo">
+
+    <div id="peopleNav">
+	<ul>
+	  <li><%= link_to_function "Geeks", "showHidePeopleList('geekPeople',this);", {:class=>'sectionBtn',:id=>'geeks_btn'} %></li>
+	  <li><%= link_to_function "Search", "showHidePeopleList('searchPeople',this);", {:class=>'sectionBtn',:id=>'search_btn'} %></li>
+	</ul>
+    </div>
+    <div id="geekPeople" class="peopleContent">
+      <%= render :partial => '/layouts/display_dragable_geeks' %>
+    </div>
+    <div id="searchPeople" class="peopleContent">
+      <%= render :partial => '/layouts/search_for_people' %>
+    </div>
+
+   </div>
+
+  
+   <div class="tripThree">
+		<ul id="participants">
+<% Participant::ROLES.each do |role| %>
+	  <li id="<%=role%>Role"><%=displayParticipantsInRole(@show,role)%></li>
+  <%= drop_receiving_element("#{role}Role",
+	:url => {:controller=>"shows", :action => "add_participant", :show_id=> @show, :role => role},
+	:before => {visual_effect(:highlight, "#{role}Role"), "$('#{role}RoleStatImg').style.display='block'"} )%>
+<% end %>
+	</ul>
+	<div id="participantStatus"></div>
+   
+   
+    </div>
+  </div>
+  
+<br clear="all">
+</div>
+  
+  
+<div class="section" id="news" style="display:none;">
+  <div class="blockDouble">
+    <div class="doubleOne">
+	
+News for this show <%= link_to_function "+", "toggleWithBlind('newHeadlineForm');", {:class=>'button'}%>:
+<br />
+
+Sorting: <%= link_to_function "off", "sort_toggle('headlines', '/headline_discussions/order', $('sort_headlines'), 'on', 'off')", {:id=>"sort_headlines"}%>
+
+<ul id="headlines" class="headlines">
+
+<%=
+render :partial => "headline_discussions/headline", :collection => @show.headlines
+%>
+</ul>
+	</div>
+	<div class="doubleTwo">
+		News not yet assigned to any show...
+		<ul id="orphin_headlines">
+		<%= render :partial => "headlines/nonassigned", :collection => @headlineOrfins %>
+		</ul>
+	</div>
+</div>
+<hr />
+</div><!-- end news -->
+
+
+</div><!-- end pageSections -->
+</div>
+  
+<hr />
+
+<%= link_to 'Destroy This Show', {:action => 'destroy', :id => @show}, :confirm => 'Are you sure you want to completely destroy this show?' %>

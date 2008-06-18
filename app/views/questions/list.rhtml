@@ -1,0 +1,27 @@
+<h1>Questions</h1>
+
+<table>
+  <tr>
+   <th>Person</th>
+   <th>Location</th>
+   <th>Title</th>
+   <th>Answers</th>
+   <th>Todo</th>
+  </tr>
+<% for question in @questions %>  
+  <tr>
+    <td><%=h question.person_name %></td>
+    <td><%=h question.location %></td>
+    <td><%=h question.title %></td>
+    <td><%=h question.answers.size %></td>
+    <td><%= link_to 'Show', :action => 'show', :id => question %> |
+    <%= link_to 'Edit', :action => 'edit', :id => question %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to "Previous page", { :page => @question_pages.current.previous } if @question_pages.current.previous %>
+<%= link_to "Next page", { :page => @question_pages.current.next } if @question_pages.current.next %> 
+
+<br />
+

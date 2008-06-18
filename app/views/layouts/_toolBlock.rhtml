@@ -1,0 +1,19 @@
+<div id="toolBlock">
+<div id="tools">
+  <div id="imageList">
+    <div class="header">More Images <%= link_to_function("+","toggleWithBlind('image_upload');",:class=>"addButton")%></div>
+    <div class="content">
+      <div id="imageListItems">
+        <%= showImageList %>
+      </div>
+      <div id="upload_status" style="display:none;"><%= upload_status_tag %></div>
+      
+
+    </div>
+  </div>
+  <div id="mTextHelp">
+    <div class="header">Formatting Help</div>
+    <div class="content"><%= render_partial "layouts/mText" %></div>
+  </div>
+</div>
+</div>

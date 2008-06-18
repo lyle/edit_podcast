@@ -1,0 +1,102 @@
+#headNav {
+  float:left;
+  width:100%;
+  background:#DAE0D2 url("bg.gif") repeat-x bottom;
+  font-size:93%;
+  line-height:normal;
+  }
+#headNav ul {
+  margin:0;
+  padding:10px 10px 0;
+  list-style:none;
+  }
+#headNav li {
+  float:left;
+  background:url("left.gif") no-repeat left top;
+  margin:0;
+  padding:0 0 0 9px;
+  }
+#headNav a:hover {
+  background-color: transparent;
+}
+#headNav a {
+  text-decoration:none;
+  color:#acd6ac;
+}
+#headNav span {
+  display:block;
+  background:url("right.gif") no-repeat right top;
+  padding:5px 15px 4px 6px;
+  }
+#headNav a:hover {
+  color:#fff;
+  }
+  
+  
+#sectionNav {
+  float:left;
+  width:100%;
+  font-size:93%;
+  line-height:normal;
+  }
+#sectionNav ul {
+  margin:0;
+  padding:10px 10px 0;
+  list-style:none;
+  }
+#sectionNav li {
+  float:left;
+  margin:0;
+  padding:0px 0px 0px 9px;
+  }
+#sectionNav li a {
+  position:relative;
+  display:block;
+  z-index:5;
+  background-color: #99cc99;
+  padding: 2px 9px 4px 9px;
+  text-decoration:none;
+}
+#sectionNav li a.selected {
+  z-index:20;
+  color: #000000;
+}
+#sectionNav li a:hover {
+  color: #330033;
+}
+
+  
+body.shows #headNav #navShows, body.articles #headNav #navArticles {
+  background-image:url("left_on.gif");
+    }
+body.shows #headNav #navShows span,  body.articles #headNav #navArticles span {
+  background-image:url("right_on.gif");
+  padding-bottom:5px;
+}
+body.shows #headNav #navShows a {
+  color:#fff;
+}
+
+.addFormWrapper {
+  position:absolute;
+  top: 50px;
+  left: 25%;
+  background-color: #DAE0D2;
+  border: 1px solid #333;
+  padding: 10px;
+  width: 50%;
+  z-index:100;
+}
+.addFormWrapper h2 {
+  margin: 0px;
+  padding: 0px;
+}
+.closebutton {
+  float:right;
+  border: 1px solid #333;
+  padding: 2px 2px;
+  line-height: 10px;
+}
+#headNav a.closebutton:hover {
+  background-color: #666;
+}

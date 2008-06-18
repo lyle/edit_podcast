@@ -1,0 +1,10 @@
+<h1>Editing question</h1>
+
+<%= start_form_tag :action => 'update', :id => @question %>
+  <%= render_partial "form" %>
+  <%= submit_tag "Save" %>
+<%= end_form_tag %>
+
+<%= link_to 'Show', :action => 'show', :id => @question %> |
+<%= link_to 'Back', :action => 'list' %> |
+    <%= link_to 'Destroy', {:action => 'destroy', :id => @question}, :confirm => "Are you sure?" %>

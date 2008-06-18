@@ -1,0 +1,4 @@
+if @show && @show.errors.empty?
+  page.replace_html "#{@role}Role", displayParticipantsInRole(@show,@role)
+  page.visual_effect :highlight, "#{@role}Role", :endcolor=>"'#ffffff'"
+end 

@@ -1,0 +1,21 @@
+<p>
+  <b>Name</b> <%= @image.name%>
+</p>
+<p>
+  <b>Width x Height</b> <%= @image.width%> x <%= @image.height%>
+</p>
+<p>
+  <b>Mime-Type</b> <%= @image.mimetype%>
+</p>
+<p>
+  <b>Created</b> <%= @image.created_on%>
+</p>
+<p>
+  <b>Updated</b> <%= @image.updated_on%>
+</p>
+<p>
+  <img src="/images/showimage/<%= @image.id%>" height="<%=@image.height%>" width="<%=@image.width%>" />
+</p>
+
+<%= link_to 'Edit', :action => 'edit', :id => @image %> |
+<%= link_to 'Back', :action => 'list' %>
