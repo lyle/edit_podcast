@@ -88,7 +88,7 @@ Status: <%= select "show", "status", [["New Show", "new"], ["Waiting", "waiting"
   <div id="currently">editing:
   	<h1><%=h @show.showtime.strftime("%Y-%m-%d") %></h1>
   	<h2><%=h @show.title %></h2>
-	<%= linkToShowPreview(@show) %>
+	<%= @show.link_to_show %>
 </div>
 
 

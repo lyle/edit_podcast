@@ -11,7 +11,7 @@
 <%= link_to "edit", :action=>"edit", :id => @user.id %>
 <% end %>
 
-<h2>Apeared on these GeekSpeak shows</h2>
+<h2>Appeared on these GeekSpeak shows</h2>
 <ul>
 <% for show in @user.shows %>
 <%= content_tag("li",  "#{show.showtime.strftime("%Y-%m-%d")} #{show.title} " + show.link_to_show + " " + link_to ("edit", :controller=>"shows", :action=>"edit", :id=>show.id) ) %>

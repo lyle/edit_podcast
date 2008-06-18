@@ -1,12 +1,5 @@
 # The methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
-  def linkToShowPreview(show)  
-  	if show.status == "live"
-        return link_to('View', view_show(show) )
-    else
-        return link_to('Preview', preview_show(show) )
-    end
-  end
 
   def displayImageThumb image
       daHtml = "<div class=\"imageShell\">"

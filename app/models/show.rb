@@ -18,9 +18,9 @@ class Show < ActiveRecord::Base
   
   def link_to_show
   	if self.status == "live"
-  	  return "<a href=\"#{self.view_url}\">view</a>"
+  	  return "<a href=\"#{self.view_url}\" target=\"_blank\">view</a>"
   	else
-  	  return "<a href=\"#{self.preview_url}\">preview</a>"
+  	  return "<a href=\"#{self.preview_url}\" target=\"_blank\">preview</a>"
   	end
   end
   
