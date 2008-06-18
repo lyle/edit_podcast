@@ -138,7 +138,7 @@ class ImagesController < ApplicationController
         @obj.teaser = @image
         @obj.save
         flash['notice'] = 'Teaser added.'
-        redirect_to :action => 'done_uploading_teaser'
+        redirect_to :action => 'done_uploading_teaser', :lock_version => @obj.lock_version
       else
         flash['notice'] = 'Something went wrong, no teaser was uploaded and/or saved.'
         redirect_to :action => 'done_uploading_teaser'

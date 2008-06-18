@@ -252,7 +252,9 @@ render :partial => "headline_discussions/headline", :collection => @show.headlin
 	<div class="doubleTwo">
 		News not yet assigned to any show...
 		<ul id="orphin_headlines">
+		<% if @headlineOrfins %>
 		<%= render :partial => "headlines/nonassigned", :collection => @headlineOrfins %>
+		<% end %>
 		</ul>
 	</div>
 </div>

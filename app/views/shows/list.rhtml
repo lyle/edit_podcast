@@ -9,7 +9,7 @@
   <div class="mainInfo">
     <h3 class="title"><%=h show.showtime.strftime("%Y-%m-%d") %> <%=h show.title %>
     <span class="display"><%= show.link_to_show %></span></h3>
-    <span class="status"><%=h show.status %></span> | Last edited <%=h show.updated_on.strftime("%A %B %d at %I:%M %p") %>
+    <span class="status"><%=h show.status %></span> | <%= show.teaser ? 'teaser' : 'no teaser' %> | Last edited <%=h show.updated_on.strftime("%A %B %d at %I:%M %p") %>
   </div>
 </div>
 <% end %>
