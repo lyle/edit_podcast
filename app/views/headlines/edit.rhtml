@@ -1,0 +1,8 @@
+<h1>New Headline</h1>
+
+<%= start_form_tag :action => 'update', :id => @headline%>
+  <%= render_partial "form" %>
+  <%= submit_tag "Save" %>
+<%= end_form_tag %>
+
+<%= link_to 'Back', :action => 'list' %>
