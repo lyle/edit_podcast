@@ -3,3 +3,10 @@
   padding-top: 4px;
   background-color: #669966;
 }
+.unassigned {
+	border:1px solid red;
+}
+.listBlock .warning {
+	border:none;
+	color:red;
+}

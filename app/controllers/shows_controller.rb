@@ -21,6 +21,15 @@ class ShowsController < ApplicationController
   def new
     @show = Show.new
     @user = @session[:user]
+    respond_to do |type| 
+      type.html {
+         render
+      } 
+      type.js {
+        render  :layout => false
+        
+      }
+    end
   end
 
   def create

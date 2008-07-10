@@ -16,6 +16,7 @@ class HeadlinesController < ApplicationController
   in_place_edit_for :headline, :status
 
   def list
+    
     if (params[:show_id])
       @show = Show.find(params[:show_id])
       @headlines = @show.headlines
@@ -28,7 +29,16 @@ class HeadlinesController < ApplicationController
   
   def new
     @headline = Headline.new()
-    @headline.user = @sessin[:user]
+    @headline.user = @session[:user]
+    respond_to do |type| 
+      type.html {
+         render
+      } 
+      type.js {
+        render  :layout => false
+        
+      }
+    end
   end
   def edit
     @headline = Headline.find(params[:id])

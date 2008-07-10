@@ -1,16 +1,26 @@
 <div class="listBlock">
 
 <% for headline in @headlines %>
-<div class="entry long" id="headline<%=headline.id%>">
+<div class="entry <%= "unassigned" if headline.headline_discussion.nil? %>" id="headline<%=headline.id%>">
   <div class="abstract"><%= headline.content%></div>
 <div class="mainInfo">
 <h3><%= headline.title %></h3>
-
-<% if ! headline.headline_discussion.nil? %>
-	<p>Assigned to Show: <%= link_to(headline.headline_discussion.show.title, :controller=>'shows',:action=>'edit',:id=>headline.headline_discussion.show) %></p>
-<% end %>
-	<p>Attributed to: <%= headline.user.name %></p>
-	<p><%= link_to 'Edit', :controller=>'headlines', :action=> 'edit', :id=>headline%>
+	<% if ! headline.url.nil? %>
+	URL: <%= link_to truncate(headline.url, 80, truncate_string="..."), headline.url %><br />
+	<% end %>
+	<%= link_to 'Edit', :controller=>'headlines', :action=> 'edit', :id=>headline%> | Attributed to: <%= headline.user.name %> | Status: <%=headline.status%><br />
+	<% if ! headline.headline_discussion.nil? %>
+	Assigned to Show: <%= link_to(headline.headline_discussion.show.title, :controller=>'shows',:action=>'edit',:id=>headline.headline_discussion.show) %>
+	<% else %>
+	<span class="warning">This news item has not yet been assigned to a show.</span> |
+	<%= link_to_remote "delete",
+	{:url=>{:controller=>'headlines',:action=>'destroy',:id=>headline},
+	:confirm=>"Are you sure you want to delete this news item?",
+	
+	:complete=>"toggleWithBlind('headline#{headline.id}');"}
+	%>
+	
+	<% end %>	
 </div>
 <br style="clear:both" />
 </div>

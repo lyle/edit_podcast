@@ -69,12 +69,13 @@ if (document.addEventListener) {
 </script>
     <%= teaserForm(@show,"show") %>
     <%= showImageForm(@show, "show") %>
+
 	<%=  form_remote_tag :url => {:controller => "headlines", :action => "create"}, :success =>"toggleWithBlind('newHeadlineForm');", :html => { :id => "newHeadlineForm", :style=> "display:none;" } %>
 	<%= link_to_function "X", "toggleWithBlind('newHeadlineForm');", {:class=>'closebutton'}%>
 	<h1>Create New News</h1>
 	<%=  	hidden_field_tag('show_id',@show.id) %>
 	<%=  	render :partial => "headlines/form" %>
-	<%=		submit_tag "Add News..."%>
+	<%=		submit_tag "Add News to this show..."%>
 	<%=  end_form_tag() %>
 
 <%= start_form_tag :action => 'update', :id => @show %>

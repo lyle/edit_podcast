@@ -3,7 +3,7 @@ Installing edit.geekspeak.org
 You take this whole rails site and check it out from svn.
 
 You do a rake migrate
-You also have to make the necessary veiws to get images to work in shows and articles.
+You also have to make the necessary PostgreSQL veiws to get images to work in shows and articles.
 This is so that we can use cocoon's DatabaseReader to get the images out using a one "table" select.
 
 Here are the special views:

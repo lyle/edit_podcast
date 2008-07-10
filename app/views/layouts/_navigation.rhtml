@@ -2,31 +2,35 @@
 <ul>
 	<!--li id="navArticles"><span><a href="/articles/">articles</a> <a class="button" href="/articles/new" class="new">+</a></span></li-->
 	<!--li id="navQandA"><span><a href="/questions/">q and a</a></span></li-->
-	<li id="navHeadlines"><span><a href="/headlines/">headlines</a> </span></li>
-	<li id="navShows"><span><a href="/shows/">shows</a>	<a class="button" href="/shows/new" class="new" onclick="toggleWithBlind('showCreateForm');return false;">+</a>
-			<div id="showCreateForm" class="addFormWrapper" style="display:none;">
-		<%= link_to_function "X", "toggleWithBlind('showCreateForm');", {:class=>'closebutton'} %>
-		<h2>Create a New Show</h2>
-		<div class="addForm">
-<%= start_form_tag :controller => 'shows', :action => 'create' %>
-<div class="showtimeForm"><label for="show_showtime">Showtime</label><br/>
-<%= date_select 'show', 'showtime'  %> @ 10:00 AM
-<input type="hidden" name="show[showtime(4i)]" value="10">
-<input type="hidden" name="show[showtime(5i)]" value="00">
-</div>
-<p class="title"><label for="show_title">Title</label><br/>
-<%= text_field 'show', 'title'  %></p>
-
-<p><label for="show_abstract">Abstract</label><br/>
-<%= text_area 'show', 'abstract', :cols => 50, :rows => 7  %></p>
-
-<!--p><label for="show_planning_notes"><%= link_to_function("Planning Notes","toggleWithBlind('show_planning_notes');")%></label><br/>
-<%= text_area 'show', 'planning_notes', :cols => 50, :rows => 5, :style => 'display:none;'  %></p-->
-
-
-
-  <%= submit_tag "Create" %>
-<%= end_form_tag %>
-</div>
-        </div></span></li>
+	<li id="navHeadlines"><span><a href="/headlines/">headlines</a>
+		<%= link_to_remote "+", {
+			:url=> {:controller => 'headlines', :action=>'new'},
+			:update=> {:success=> "headlinesRemoteForm"},
+			:complete=>"toggleWithBlind('headlinesCreateForm');"},{
+			:class=>"button"}
+			%>
+	<li id="navShows"><span><a href="/shows/">shows</a>
+		<%= link_to_remote "+", {
+			:url=> {:controller => 'shows', :action=>'new'},
+			:update=> {:success=> "showsRemoteForm"},
+			:complete=>"toggleWithBlind('showCreateForm');"},{
+			:class=>"button"}
+			%>
 </ul></div>
+
+<div id="headlinesCreateForm" class="addFormWrapper" style="display:none;">
+	<%= link_to_function "X", "toggleWithBlind('headlinesCreateForm');", {:class=>'closebutton'} %>
+	
+	<div class="addForm" id="headlinesRemoteForm">
+	
+	</div>
+</div>
+
+<div id="showCreateForm" class="addFormWrapper" style="display:none;">
+	<%= link_to_function "X", "toggleWithBlind('showCreateForm');", {:class=>'closebutton'} %>
+	<div class="addForm" id="showsRemoteForm">
+	
+	</div>
+	
+
+</div>
