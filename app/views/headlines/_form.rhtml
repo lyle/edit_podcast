@@ -11,6 +11,10 @@
 <p><label for="headline_content">Content</label><br/>
 <%= text_area 'headline', 'content', :cols => 40, :rows => 10  %></p>
 
+<p><label for="headline_user_id">User</lable><br/>
+<%=  select("headline", "user_id", User.find(:all).collect {|p| [ p.name, p.id ] }) %>
+
+
 
 <!--[eoform:show]-->
 

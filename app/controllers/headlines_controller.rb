@@ -1,6 +1,15 @@
 class HeadlinesController < ApplicationController
+
+  layout  'application'
+  before_filter :login_required
+
+
+  def index
+    list
+    render :action => 'list'
+  end
   
-    layout  'api'
+#    layout  'api'
   in_place_edit_for :headline, :title
   in_place_edit_for :headline, :content
   in_place_edit_for :headline, :url
@@ -19,8 +28,11 @@ class HeadlinesController < ApplicationController
   
   def new
     @headline = Headline.new()
+    @headline.user = @sessin[:user]
   end
-  
+  def edit
+    @headline = Headline.find(params[:id])
+  end
   def create
     @headline = Headline.new(params[:headline])
     @headline.user = @session[:user]

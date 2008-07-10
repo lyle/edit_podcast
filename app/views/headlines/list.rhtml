@@ -1,14 +1,22 @@
+<div class="listBlock">
+
 <% for headline in @headlines %>
-<ul id="headline<%=headline.id%>">
-<h2><%= headline.title %></h2>	
-	<li>show: <%= link_to(headline.headline_discussion.show.title, :controller=>'shows',:action=>'edit',:id=>headline.headline_discussion.show) if ! headline.headline_discussion.nil? %></li>
-	<li><%= headline.content%></li>
-	<li><%= headline.status%></li>
-	<li><%= headline.user.name %></li>
-</ul>
+<div class="entry long" id="headline<%=headline.id%>">
+  <div class="abstract"><%= headline.content%></div>
+<div class="mainInfo">
+<h3><%= headline.title %></h3>
+
+<% if ! headline.headline_discussion.nil? %>
+	<p>Assigned to Show: <%= link_to(headline.headline_discussion.show.title, :controller=>'shows',:action=>'edit',:id=>headline.headline_discussion.show) %></p>
+<% end %>
+	<p>Attributed to: <%= headline.user.name %></p>
+	<p><%= link_to 'Edit', :controller=>'headlines', :action=> 'edit', :id=>headline%>
+</div>
+<br style="clear:both" />
+</div>
 <% end %>
 
-
+</div>
 
 
 <%= link_to 'Previous page', { :page => @headline_pages.current.previous } if @headline_pages.current.previous %>

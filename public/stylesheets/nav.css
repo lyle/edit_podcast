@@ -66,14 +66,14 @@
 }
 
   
-body.shows #headNav #navShows, body.articles #headNav #navArticles {
+body.shows #headNav #navShows, body.headlines #headNav #navheadlines, body.articles #headNav #navArticles {
   background-image:url("left_on.gif");
     }
-body.shows #headNav #navShows span,  body.articles #headNav #navArticles span {
+body.shows #headNav #navShows span, body.headlines #headNav #navheadlines span, body.articles #headNav #navArticles span {
   background-image:url("right_on.gif");
   padding-bottom:5px;
 }
-body.shows #headNav #navShows a {
+body.shows #headNav #navShows a, body.headlines #headNav #navheadlines a {
   color:#fff;
 }
 

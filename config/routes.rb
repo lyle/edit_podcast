@@ -9,6 +9,7 @@ ActionController::Routing::Routes.draw do |map|
 # Lyle Stuff Added
   map.connect '', :controller => 'shows', :action => 'list'
   map.connect 'questions/:question_id/answer', :controller => 'answers', :action => 'new'  
+  #map.connect 'headlines', :controller => 'headlines', :action=> 'list'
 
 # end Lyle Stuff Added
 
