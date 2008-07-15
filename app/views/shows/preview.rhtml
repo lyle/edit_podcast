@@ -1,0 +1,8 @@
+<%
+  @html['<p id="gslogo">'] = "<div id='publish_control'>
+                        #{ start_form_tag :controller=> 'shows',:action=> 'publish', :id=>@show, :only_path=>false}
+                        #{ submit_tag "Publish"}
+                        #{ end_form_tag}
+                            </div><p id=\"gslogo\">"
+
+-%><%= @html -%>
