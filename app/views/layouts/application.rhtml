@@ -37,7 +37,7 @@
 
 
 <script>
-<% if flash['notice'] %>
+<% if flash[:notice] %>
 	<%= visual_effect :appear, "feedback", :duration => 0.2 %>
 	<%= visual_effect :fade, 'feedback',:delay => 5.0, :duration => 2.0 %>
 <% end %>

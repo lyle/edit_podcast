@@ -85,6 +85,7 @@ if (document.addEventListener) {
 Status: <%= select "show", "status", [["New Show", "new"], ["Waiting", "waiting"], ["Pending Approval", "pending"],["Live","live"]], 
 	{id=>'show_status'} %>
     <%= submit_tag 'Save', :onclick => "$('preview').value = 'false';" %>
+    <%= link_to "Publish", {:action=>'preview',:id=>@show}, {:title=>'Use this to set a fixed file.-Preview included.'} %>
   </div>
   <div id="currently">editing:
   	<h1><%=h @show.showtime.strftime("%Y-%m-%d") %></h1>

@@ -1,8 +1,27 @@
-<%
-  @html['<p id="gslogo">'] = "<div id='publish_control'>
+<% @html['<p id="gslogo">'] = "<div id='publish_control'>
                         #{ start_form_tag :controller=> 'shows',:action=> 'publish', :id=>@show, :only_path=>false}
                         #{ submit_tag "Publish"}
-                        #{ end_form_tag}
+			<h2>Publish this Show</h2>
+			<p>This will create a static html document on the file system which will increase the speed and reliability of our little server.<br />
+                        <span style='float:right;'>#{link_to 'cancel',{:action=>'edit',:id=>@show, :only_path=>false}}</span></p>
+			#{ end_form_tag}
                             </div><p id=\"gslogo\">"
 
--%><%= @html -%>
+-%><% @html['</head>'] = "<style>#publish_control {
+				position:absolute;
+				display:block;
+				z-index:300;
+				top:10px;
+				left: 10px;
+				width:350px;
+				height:80px;
+				border:1px solid blue;
+				background-color: white;
+				padding:10px;
+				}
+				#publish_control h2{
+				padding:0px;margin:0px;
+				}
+				input {float:right;}
+			</style>" -%>
+<%= @html -%>
