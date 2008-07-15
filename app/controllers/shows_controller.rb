@@ -1,5 +1,6 @@
 class ShowsController < ApplicationController
   include LoginSystem 
+  require 'open-uri'
   
   layout  'application'
   before_filter :login_required
@@ -115,4 +116,48 @@ class ShowsController < ApplicationController
     participant.destroy
     render :action => "participants_of_role"
   end
+  
+  
+  def preview
+    @show = Show.find(params[:id])
+    if @show.status == "live"
+  	  url = @show.view_url
+  	else
+  	  url = @show.preview_url
+  	end
+    @html = open ( url,
+              'User-Agent' => 'edit-geekspeak').read
+    @html["<head>"] = "<head><base href='#{url}' />"
+    
+    @session["show_#{@show.id}_cache"] = @html
+    render  :layout => false
+  end
+  def publish
+    @show = Show.find(params[:id])
+    if ! @session["show_#{@show.id}_cache"] 
+        flash[:notice] = 'Please start over. The show was not published.'
+        redirect_to :action => 'edit', :id => @show 
+    else
+      	begin
+      	 
+      	 Dir.mkdir("#{RAILS_ROOT}/public/shows-link/#{@show.showtime.strftime('%Y')}") unless
+      	  File.exists?("#{RAILS_ROOT}/public/shows-link/#{@show.showtime.strftime('%Y')}")
+      	 Dir.mkdir("#{RAILS_ROOT}/public/shows-link/#{@show.showtime.strftime('%Y/%m')}") unless
+        	  File.exists?("#{RAILS_ROOT}/public/shows-link/#{@show.showtime.strftime('%Y/%m')}")
+      	 Dir.mkdir("#{RAILS_ROOT}/public/shows-link/#{@show.showtime.strftime('%Y/%m/%d')}") unless
+          	  File.exists?("#{RAILS_ROOT}/public/shows-link/#{@show.showtime.strftime('%Y/%m/%d')}")
+      	  
+      	  
+      	  f = File.new("#{RAILS_ROOT}/public/shows-link/#{@show.showtime.strftime('%Y/%m/%d')}/index.html", "w")
+      	  f.write(@session["show_#{@show.id}_cache"])
+      	  @session["show_#{@show.id}_cache"] = nil
+      	rescue ActiveRecord::StaleObjectError
+           flash[:notice] = 'I couldn\'t write the file.'
+           redirect_to :action => 'edit', :id => @show
+      	end 
+      	flash[:notice] = 'The show has been published.'
+      	redirect_to :action => 'edit', :id => @show
+    end
+  end
+  
 end

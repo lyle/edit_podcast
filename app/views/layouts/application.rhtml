@@ -18,7 +18,7 @@
    end
 %>
 <body class="<%= controller.controller_name %> <%= eAction %>">
-<div id="feedback" style="display:none;"></div>
+<div id="feedback" style="display:none;"><%= flash[:notice] %></div>
 <div id="divNav">
 <%= render_partial "layouts/navigation" %>
 </div>
@@ -34,5 +34,12 @@
 <%= @content_for_layout %>
 </div>
 </div>
+
+
+<script>
+	<%= visual_effect :appear, "feedback", :duration => 0.2 %>
+	<%= visual_effect :fade, 'feedback',:delay => 5.0, :duration => 2.0 %>
+	
+</script>
 </body>
 </html>
