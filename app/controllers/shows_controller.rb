@@ -120,22 +120,18 @@ class ShowsController < ApplicationController
   
   def preview
     @show = Show.find(params[:id])
-    if @show.status == "live"
-  	  url = @show.view_url
-  	else
-  	  url = @show.preview_url
-  	end
-    @html = open ( url,
+    @html = open ( @show.preview_url,
               'User-Agent' => 'edit-geekspeak').read
-    @html["<head>"] = "<head><base href='#{url}' />"
+    temp_file = File.new("#{RAILS_ROOT}/tmp/cache/show_#{@show.id}_cache.html", "w")
+    temp_file.write("#{@html}")
     
-    @session["show_#{@show.id}_cache"] = @html
+    @html["<head>"] = "<head><base href='#{@show.view_url}' />"
     render  :layout => false
   end
   def publish
     @show = Show.find(params[:id])
-    if ! @session["show_#{@show.id}_cache"] 
-        flash[:notice] = 'Please start over. The show was not published.'
+    if File.exists?("#{RAILS_ROOT}/tmp/cache/show_#{@show.id}_cache")
+        flash[:notice] = "I couldn't find the preview file, start over."
         redirect_to :action => 'edit', :id => @show 
     else
       	begin
@@ -146,15 +142,16 @@ class ShowsController < ApplicationController
         	  File.exists?("#{RAILS_ROOT}/public/shows-link/#{@show.showtime.strftime('%Y/%m')}")
       	 Dir.mkdir("#{RAILS_ROOT}/public/shows-link/#{@show.showtime.strftime('%Y/%m/%d')}") unless
           	  File.exists?("#{RAILS_ROOT}/public/shows-link/#{@show.showtime.strftime('%Y/%m/%d')}")
+          	  
+         File.rename("#{RAILS_ROOT}/tmp/cache/show_#{@show.id}_cache.html",
+      	             "#{RAILS_ROOT}/public/shows-link/#{@show.showtime.strftime('%Y/%m/%d')}/index.html")
       	  
-      	  
-      	  f = File.new("#{RAILS_ROOT}/public/shows-link/#{@show.showtime.strftime('%Y/%m/%d')}/index.html", "w")
-      	  f.write(@session["show_#{@show.id}_cache"])
-      	  @session["show_#{@show.id}_cache"] = nil
       	rescue ActiveRecord::StaleObjectError
            flash[:notice] = 'I couldn\'t write the file.'
            redirect_to :action => 'edit', :id => @show
       	end 
+      	@show.status = 'live'
+      	@show.save
       	flash[:notice] = 'The show has been published.'
       	redirect_to :action => 'edit', :id => @show
     end
