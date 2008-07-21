@@ -28,8 +28,9 @@ class HeadlinesController < ApplicationController
   end
   
   def new
-    @headline = Headline.new()
+    @headline = Headline.new(params[:headline])
     @headline.user = @session[:user]
+    @returnurl = params[:returnurl]
     respond_to do |type| 
       type.html {
          render
@@ -52,6 +53,8 @@ class HeadlinesController < ApplicationController
             :action => 'create',
             :show_id => params[:show_id],
             :headline_id => @headline
+      elsif (params[:returnurl])
+        redirect_to params[:returnurl]
       else
         flash[:notice] = 'News was successfully created.'
         redirect_to :action => 'list'

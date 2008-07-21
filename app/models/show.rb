@@ -16,6 +16,10 @@ class Show < ActiveRecord::Base
   validates_length_of :title, :maximum=>64
   validates_uniqueness_of :showtime
   
+  STATUSES = [["New Show", "new"], ["Waiting", "waiting"], ["Pending Approval", "pending"],["Live","live"]]
+  
+  
+  
   def link_to_show
   	if self.status == "live"
   	  return "<a href=\"#{self.view_url}\" target=\"_blank\">view</a>"
@@ -23,7 +27,6 @@ class Show < ActiveRecord::Base
   	  return "<a href=\"#{self.preview_url}\" target=\"_blank\">preview</a>"
   	end
   end
-  
   
   
   def view_url

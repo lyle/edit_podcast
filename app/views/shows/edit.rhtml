@@ -82,7 +82,7 @@ if (document.addEventListener) {
 
 <div class="pagehead">
   <div id="edit_tool_bar">
-Status: <%= select "show", "status", [["New Show", "new"], ["Waiting", "waiting"], ["Pending Approval", "pending"],["Live","live"]], 
+Status: <%= select "show", "status", Show::STATUSES, 
 	{id=>'show_status'} %>
     <%= submit_tag 'Save', :onclick => "$('preview').value = 'false';" %>
     <%= link_to "Publish", {:action=>'preview',:id=>@show}, {:title=>'Use this to set a fixed file.-Preview included.'} %>

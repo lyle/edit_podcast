@@ -2,6 +2,7 @@
 
 <%= start_form_tag :action => 'create' %>
   <%= render_partial "form" %>
+  <input type="hidden" name="returnurl" value="<%=@returnurl%>"%>
   <%= submit_tag "Create" %>
 <%= end_form_tag %>
 
