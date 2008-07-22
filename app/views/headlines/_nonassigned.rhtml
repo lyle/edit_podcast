@@ -2,8 +2,8 @@
 <%= link_to_remote ("&lt;&lt;",
 	:url=>{:controller=>'headline_discussions',:action=>'create',:show_id=>@show.id,:headline_id=>nonassigned.id},
 	:success=> "new Effect.Fade(\"headlines_#{nonassigned.id}\");sorting_off(\"headlines\",\"sort_headlines\",\"off\")" )
-	%><h3 style="display:inline;"><%= nonassigned.title %></h3>
-	<%= nonassigned.user.name%>
+	%><h3 style="display:inline;"><%= nonassigned.title %></h3><br />
+	by <%= nonassigned.user.name%> on <%= nonassigned.created_at.strftime("%Y/%m/%d %I:%M%p")%>
 	
 
 </li>

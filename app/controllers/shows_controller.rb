@@ -49,7 +49,7 @@ class ShowsController < ApplicationController
     @show = Show.find(params[:id])
     @geeks = Group.find(:first, :conditions => ["name = 'Geeks'"], :include => :users ).users
     @user = @session[:user]
-    @headlineOrfins = Headline.find_by_sql(" SELECT headlines.* FROM headlines LEFT OUTER JOIN  headline_discussions ON (headlines.id = headline_discussions.headline_id) WHERE headline_discussions.id IS NULL")
+    @headlineOrfins = Headline.find_by_sql(" SELECT headlines.* FROM headlines LEFT OUTER JOIN  headline_discussions ON (headlines.id = headline_discussions.headline_id) WHERE headline_discussions.id IS NULL ORDER BY headlines.id DESC")
   end
 
   def update
