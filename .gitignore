@@ -2,3 +2,4 @@
 tmp/sessions/ruby_sess*
 public/shows-link/
 */.DS_Store
+config/database.yml
