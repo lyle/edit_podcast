@@ -3,10 +3,10 @@
 <!--[form:headline]-->
 
 <p class="title"><label for="headline_title">Title</label><br/>
-<%= text_field 'headline', 'title'  %></p>
+<%= text_field 'headline', 'title', :maxlength => 64, :size=>40 %></p>
 
 <p><label for="headline_url">URL</label><br/>
-<%= text_field 'headline', 'url'  %></p>
+<%= text_field 'headline', 'url',:maxlength => 256, :size=>40  %></p>
 
 <p><label for="headline_content">Content</label><br/>
 <%= text_area 'headline', 'content', :cols => 40, :rows => 10  %></p>

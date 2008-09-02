@@ -7,6 +7,9 @@ class Headline < ActiveRecord::Base
 	validates_presence_of :title, :on => :create, :message => "can't be blank"
 	validates_presence_of :content, :on => :create, :message => "can't be blank"
 	
+  validates_length_of :title, :maximum=>64
+  validates_length_of :url, :maximum=>256
+	
 	def orphans
 	  return Headline.find(:all, :condition=>" SELECT headlines.* FROM headlines, headline_discussions WHERE headlines.id = headline_discussions.id AND headline_discussions.id IS NULL")
 	end
