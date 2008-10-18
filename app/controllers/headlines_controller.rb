@@ -33,7 +33,8 @@ class HeadlinesController < ApplicationController
     @returnurl = params[:returnurl]
     respond_to do |type| 
       type.html {
-         render
+        
+         render :layout=>'simple'
       } 
       type.js {
         render  :layout => false
