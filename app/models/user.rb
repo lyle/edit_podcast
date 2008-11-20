@@ -9,7 +9,8 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :groups, :uniq=> true
 
   def self.authenticate(login, pass)
-    @user = find_first(["login = ? AND password = ?", login, sha1(pass)])
+    @user = find_first(["login = ? AND password = ?", login, sha1(pass)]) or return nil
+    
     #confirm that user is in the Geeks Group - if not do not allow to log in
     @group = Group.find_by_name("Geeks")
     if @user.groups.include?(@group) 

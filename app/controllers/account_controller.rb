@@ -12,9 +12,12 @@ class AccountController < ApplicationController
         else
           @login    = @params['user_login']
           flash['notice']  = "Login unsuccessful"
+          render :layout=>'simple'
+      
       end
+      
+      else render :layout=>'simple'
     end
-    render :layout=>'simple'
   end
   
   
