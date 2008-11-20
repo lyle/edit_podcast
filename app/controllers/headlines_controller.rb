@@ -29,7 +29,10 @@ class HeadlinesController < ApplicationController
   
   def new
     @headline = Headline.new(params[:headline])
-    @headline.user = @session[:user]
+    # we need to allow a user to pick who the author of a news story is.
+    if @headline.user.nil?
+      @headline.user = @session[:user]
+    end
     @returnurl = params[:returnurl]
     respond_to do |type| 
       type.html {

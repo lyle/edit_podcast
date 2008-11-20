@@ -14,6 +14,7 @@ class AccountController < ApplicationController
           flash['notice']  = "Login unsuccessful"
       end
     end
+    render :layout=>'simple'
   end
   
   
