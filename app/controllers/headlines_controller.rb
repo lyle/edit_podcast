@@ -50,7 +50,7 @@ class HeadlinesController < ApplicationController
   end
   def create
     @headline = Headline.new(params[:headline])
-    @headline.user = @session[:user]
+    @headline.user = @session[:user] unless @headline.user
     if @headline.save
       if params[:show_id]
         redirect_to :controller => 'headline_discussions',
@@ -65,9 +65,10 @@ class HeadlinesController < ApplicationController
       end
     else
       flash[:notice] = 'A problem occured creating the headline.. odd text?'
+      @returnurl = params[:returnurl]
       respond_to do |type| 
         type.html {
-          redirect_to :controller => 'headlines' , :action => 'new'
+          render  :action => 'new', :layout=>'simple'
         } 
         type.js { render } 
       end
