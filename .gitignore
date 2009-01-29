@@ -1,6 +1,6 @@
 *.log
 tmp/sessions/ruby_sess*
 public/shows-link/
-*/.DS_Store
+*.DS_Store
 config/database.yml
 vendor/rails

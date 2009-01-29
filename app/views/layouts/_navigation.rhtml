@@ -8,14 +8,14 @@
 			:update=> {:success=> "headlinesRemoteForm"},
 			:complete=>"toggleWithBlind('headlinesCreateForm');"},{
 			:class=>"button"}
-			%>
+			%></span></li>
 	<li id="navShows"><span><a href="/shows/">shows</a>
 		<%= link_to_remote "+", {
 			:url=> {:controller => 'shows', :action=>'new'},
 			:update=> {:success=> "showsRemoteForm"},
 			:complete=>"toggleWithBlind('showCreateForm');"},{
 			:class=>"button"}
-			%>
+			%></span></li>
 </ul></div>
 
 <div id="headlinesCreateForm" class="addFormWrapper" style="display:none;">
