@@ -1,3 +1,9 @@
+h1. Depricated
+
+This was my first ruby on rails app. 
+I have replaced this app with http://github.com/lyle/geekspeak.org 
+
+
 h1. Edit Podcast is for GeekSpeak
 
 This system is used to edit the "GeekSpeak.org":http://geekspeak.org/ website (show pages, news headlines, and podcast). The publishing side is using Tomcat and Cocoon which shares the same Database as this tool edits. 
